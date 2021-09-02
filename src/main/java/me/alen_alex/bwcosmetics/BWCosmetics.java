@@ -4,6 +4,8 @@ import com.andrei1058.bedwars.api.BedWars;
 import me.alen_alex.bwcosmetics.config.Configuration;
 import me.alen_alex.bwcosmetics.cosmetics.CosmeticManager;
 import me.alen_alex.bwcosmetics.data.Storage;
+import me.alen_alex.bwcosmetics.listener.PlayerJoinEvent;
+import me.alen_alex.bwcosmetics.listener.PlayerProjectileLaunchEvent;
 import me.alen_alex.bwcosmetics.playerdata.PlayerCosmeticsManager;
 import me.alen_alex.bwcosmetics.utility.FileUtils;
 import me.alen_alex.bwcosmetics.utility.WorkloadScheduler;
@@ -44,11 +46,17 @@ public final class BWCosmetics extends JavaPlugin {
         storage.tryConnection();
         storage.createDatabase();
         cosmeticManager.loadBowTrail();
+        registerListeners();
     }
 
     @Override
     public void onDisable() {
 
+    }
+
+    public void registerListeners(){
+        getServer().getPluginManager().registerEvents(new PlayerJoinEvent(), this);
+        getServer().getPluginManager().registerEvents(new PlayerProjectileLaunchEvent(), this);
     }
 
     public static BWCosmetics getPlugin() {
