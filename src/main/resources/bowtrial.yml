@@ -1,0 +1,4 @@
+bowtrail:
+  barrier:
+    name: "&cBarrier"
+    Particle: BARRIER
