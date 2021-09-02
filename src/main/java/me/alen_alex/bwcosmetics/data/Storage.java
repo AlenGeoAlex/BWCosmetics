@@ -45,10 +45,8 @@ public class Storage {
     public void tryConnection(){
         try {
             this.SQL = new SQL(this.sqlDatabase.getConnection());
-        } catch (IOException e) {
+        } catch (IOException | SQLException e) {
             e.printStackTrace();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
         }
     }
 
