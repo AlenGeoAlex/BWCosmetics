@@ -3,13 +3,13 @@ package me.alen_alex.bwcosmetics.utility;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import me.Abhigya.core.util.xseries.XMaterial;
+import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
 import java.lang.reflect.Field;
-import java.util.Base64;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 public class ItemUtils {
 
@@ -29,6 +29,27 @@ public class ItemUtils {
         }
         head.setItemMeta(meta);
         return head;
+    }
+
+    public ItemStack getItem(Material materialType, String displayName, List<String> lore){
+        ItemStack stack = new ItemStack(materialType);
+        ItemMeta stackMeta = stack.getItemMeta();
+        stackMeta.setDisplayName(displayName);;
+        stackMeta.setLore(new ArrayList<>(lore));
+        stack.setItemMeta(stackMeta);
+        return stack;
+    }
+
+    public ItemStack getItem(Material materialType, String displayName){
+        ItemStack stack = new ItemStack(materialType);
+        ItemMeta stackMeta = stack.getItemMeta();
+        stackMeta.setDisplayName(displayName);;
+        stack.setItemMeta(stackMeta);
+        return stack;
+    }
+
+    public ItemStack getItem(Material materialType){
+        return new ItemStack(materialType);
     }
 
 }
