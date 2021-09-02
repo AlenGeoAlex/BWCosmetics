@@ -1,4 +1,6 @@
-bowtrail:
-  barrier:
-    name: "&cBarrier"
-    Particle: BARRIER
+barrier:
+  name: barrier
+  particle: BARRIER
+heart:
+  name: smoke
+  particle: SMOKE_NORMAL

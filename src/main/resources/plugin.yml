@@ -4,3 +4,5 @@ main: me.alen_alex.bwcosmetics.BWCosmetics
 authors:
   - Alen_Alex
   - Inferno
+depend:
+  - BedWars1058
