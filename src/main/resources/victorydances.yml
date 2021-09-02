@@ -1,0 +1,4 @@
+witherrider:
+  enabled: true
+  withername: "%player% wither"
+  message: "Use the mouse to control it and click to shoot"
