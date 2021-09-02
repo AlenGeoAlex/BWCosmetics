@@ -1,7 +1,7 @@
 package me.alen_alex.bwcosmetics;
 
 import me.alen_alex.bwcosmetics.config.Configuration;
-import me.alen_alex.bwcosmetics.data.DataStorage;
+import me.alen_alex.bwcosmetics.data.Storage;
 import me.alen_alex.bwcosmetics.utility.FileUtils;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -10,7 +10,7 @@ public final class BWCosmetics extends JavaPlugin {
     private static BWCosmetics plugin;
     private static FileUtils fileUtils;
     private static Configuration configuration;
-    private static DataStorage storage;
+    private static Storage storage;
     @Override
     public void onEnable() {
         plugin = this;
@@ -22,7 +22,7 @@ public final class BWCosmetics extends JavaPlugin {
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
-        storage = new DataStorage(this,getConfiguration().isUsingMysql());
+        storage = new Storage(this,getConfiguration().isUsingMysql());
         storage.build();
         storage.tryConnection();
         storage.createDatabase();
@@ -45,7 +45,7 @@ public final class BWCosmetics extends JavaPlugin {
         return configuration;
     }
 
-    public static DataStorage getStorage() {
+    public static Storage getStorage() {
         return storage;
     }
 }

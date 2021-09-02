@@ -11,14 +11,14 @@ import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class DataStorage {
+public class Storage {
 
     private boolean mysqlEnabled;
     private SQLDatabase sqlDatabase;
     private SQL SQL;
     private BWCosmetics plugin;
 
-    public DataStorage(BWCosmetics plugin, boolean mysqlEnabled) {
+    public Storage(BWCosmetics plugin, boolean mysqlEnabled) {
         this.mysqlEnabled = mysqlEnabled;
         this.plugin = plugin;
     }
