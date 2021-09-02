@@ -5,11 +5,14 @@ import me.Abhigya.core.database.sql.SQLDatabase;
 import me.Abhigya.core.database.sql.hikaricp.HikariClientBuilder;
 import me.Abhigya.core.database.sql.sqlite.SQLite;
 import me.alen_alex.bwcosmetics.BWCosmetics;
+import me.alen_alex.bwcosmetics.playerdata.PlayerCosmetic;
 
 import java.io.File;
 import java.io.IOException;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.UUID;
 
 public class Storage {
 
@@ -73,7 +76,7 @@ public class Storage {
                 @Override
                 public void run() {
                     try {
-                        PreparedStatement ps = SQL.getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS `cosmetics` (`id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,`uuid` VARCHAR(50) NOT NULL,`death` VARCHAR(30),`killeffect` VARCHAR(30) NOT NULL, `victorydance` VARCHAR(30) NOT NULL,`bowtrial` VARCHAR(30) NOT NULL);");
+                        PreparedStatement ps = SQL.getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS `cosmetics` (`id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,`uuid` VARCHAR(50) NOT NULL,`death` VARCHAR(30),`killeffect` VARCHAR(30), `victorydance` VARCHAR(30),`bowtrial` VARCHAR(30));");
                         ps.executeUpdate();
                         ps.close();
                     } catch (SQLException e) {
@@ -83,6 +86,65 @@ public class Storage {
             });
         }
     }
+
+    public ResultSet getUserData(UUID uuid){
+        if(!isConnectionOnline()){
+            return null;
+        }
+        try {
+            PreparedStatement ps = this.SQL.getConnection().prepareStatement("SELECT * FROM `cosmetics` WHERE `uuid` = '"+uuid.toString()+"';");
+            ResultSet set = ps.executeQuery();
+            ps.close();
+            return set;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
+    public boolean doUserExist(UUID uuid){
+        if(!isConnectionOnline()){
+            return false;
+        }
+        try {
+            PreparedStatement ps = this.SQL.getConnection().prepareStatement("SELECT `id` FROM `cosmetics` WHERE `uuid` = '"+uuid.toString()+"';");
+            ResultSet set = ps.executeQuery();
+            if(set.next()) {
+                ps.close();
+                set.close();
+                return true;
+            } else {
+                ps.close();
+                set.close();
+                return false;
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean registerUser(UUID uuid){
+        if(!isConnectionOnline()){
+            return false;
+        }
+        try {
+            PreparedStatement ps = this.SQL.getConnection().prepareStatement("INSERT INTO `cosmetics` (`uuid`) VALUES ('"+uuid.toString()+"');");
+            ps.executeUpdate();
+            ps.close();
+            return true;
+        }catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    /*TODO NOT COMPLETE
+    public boolean saveUserData(PlayerCosmetic cosmeticData){
+        try {
+        }
+    }*/
 
 
 }

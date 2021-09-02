@@ -1,4 +1,4 @@
-package me.alen_alex.bwcosmetics.cosmetics;
+package me.alen_alex.bwcosmetics.cosmetics.bowtrail;
 
 import me.Abhigya.core.particle.particlelib.ParticleBuilder;
 import me.Abhigya.core.particle.particlelib.ParticleEffect;
@@ -28,6 +28,10 @@ public class BowTrial {
             particleBuilder.setLocation(location).display();
         };
         WorkloadScheduler.getSyncThread().add(workload);
+    }
+
+    public boolean hasPermission(Player player){
+        return player.hasPermission("bwc.bowtrail."+name);
     }
 
 

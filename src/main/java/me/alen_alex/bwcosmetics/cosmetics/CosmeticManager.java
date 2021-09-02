@@ -3,13 +3,13 @@ package me.alen_alex.bwcosmetics.cosmetics;
 import de.leonhard.storage.Yaml;
 import me.Abhigya.core.particle.particlelib.ParticleEffect;
 import me.alen_alex.bwcosmetics.BWCosmetics;
+import me.alen_alex.bwcosmetics.cosmetics.bowtrail.BowTrial;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class CosmeticManager {
 
-    private HashMap<String,BowTrial> cachedBowTrial = new HashMap<String,BowTrial>();
+    private HashMap<String, BowTrial> cachedBowTrial = new HashMap<String,BowTrial>();
 
     public void loadBowTrail(){
         Yaml config = BWCosmetics.getConfiguration().getBowTrailConfig();
@@ -34,7 +34,6 @@ public class CosmeticManager {
     public boolean containsBowTrail(String name){
         return cachedBowTrial.containsKey(name);
     }
-//Hello User
 
 
 }
