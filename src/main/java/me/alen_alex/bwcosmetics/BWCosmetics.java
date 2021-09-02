@@ -4,6 +4,7 @@ import com.andrei1058.bedwars.api.BedWars;
 import me.alen_alex.bwcosmetics.config.Configuration;
 import me.alen_alex.bwcosmetics.cosmetics.CosmeticManager;
 import me.alen_alex.bwcosmetics.data.Storage;
+import me.alen_alex.bwcosmetics.playerdata.PlayerCosmeticsManager;
 import me.alen_alex.bwcosmetics.utility.FileUtils;
 import me.alen_alex.bwcosmetics.utility.WorkloadScheduler;
 import org.bukkit.Bukkit;
@@ -17,6 +18,7 @@ public final class BWCosmetics extends JavaPlugin {
     private static Storage storage;
     private static CosmeticManager cosmeticManager;
     private static BedWars bwAPI;
+    private static PlayerCosmeticsManager playerManager;
     @Override
     public void onEnable() {
         plugin = this;
@@ -71,5 +73,9 @@ public final class BWCosmetics extends JavaPlugin {
 
     public static BedWars getBwAPI() {
         return bwAPI;
+    }
+
+    public static PlayerCosmeticsManager getPlayerManager() {
+        return playerManager;
     }
 }

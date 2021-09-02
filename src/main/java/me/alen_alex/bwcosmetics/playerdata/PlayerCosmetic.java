@@ -20,6 +20,7 @@ public class PlayerCosmetic {
         this.playerUUID = playerUUID;
         this.player = Bukkit.getPlayer(playerUUID);
         playerBowTrail = null;
+        loadCosmetics();
     }
 
     public void loadCosmetics(){
@@ -42,4 +43,15 @@ public class PlayerCosmetic {
         });
     }
 
+    public BowTrial getPlayerBowTrail() {
+        return playerBowTrail;
+    }
+
+    public void setPlayerBowTrail(BowTrial playerBowTrail) {
+        this.playerBowTrail = playerBowTrail;
+    }
+
+    public boolean hasBowTrail(){
+        return this.playerBowTrail != null;
+    }
 }
