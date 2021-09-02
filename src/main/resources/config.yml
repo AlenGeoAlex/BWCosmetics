@@ -1,0 +1,28 @@
+##Never Change It
+version: "1.0"
+
+########################################################################################################################
+##                                                                                                                    ##
+##                                                  BW1058 Cosmetics                                                  ##
+##                                                                                                                    ##
+########################################################################################################################
+##prefix -> Prefix for the plugin messages:
+prefix: "&8[&cBridge&bPractice&8] &7: "
+########################################################################################################################
+##Mysql Connection Settings
+##Everything is pretty much self explainatory
+##use-mysql -> Whether to use MySQL. If False, it will redirect to SQLite and all the below parameteres will be invalid
+##host -> hostaddress of the database machine
+##port -> Port the driver request MySQL Connection
+##username -> username for the SQL Connection
+##password -> password for the SQL Connection
+##database -> Database for the plugin to use
+##usessl -> Whether to use SSL or not
+server:
+  use-mysql: true
+  host: "localhost"
+  port: "3306"
+  username: "root"
+  password: ""
+  database: "bridgepractice"
+  usessl: true

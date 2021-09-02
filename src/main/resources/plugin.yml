@@ -1,4 +1,6 @@
 name: BWCosmetics
 version: '${project.version}'
 main: me.alen_alex.bwcosmetics.BWCosmetics
-authors: [ Alen_Alex ]
+authors:
+  - Alen_Alex
+  - Inferno
