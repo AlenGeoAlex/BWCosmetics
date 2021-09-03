@@ -23,6 +23,7 @@ public final class BWCosmetics extends JavaPlugin {
     private static BedWars bwAPI;
     private static PlayerCosmeticsManager playerManager;
     private static Cooldowns cooldownTasks;
+    private static WorkloadScheduler scheduler;
     @Override
     public void onEnable() {
         plugin = this;
@@ -42,15 +43,23 @@ public final class BWCosmetics extends JavaPlugin {
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
-        WorkloadScheduler.intializeThread();
+        scheduler = new WorkloadScheduler();
+        scheduler.intializeThread();
         storage = new Storage(this,getConfiguration().isUsingMysql());
         storage.build();
         storage.tryConnection();
         storage.createDatabase();
-        cooldownTasks = new Cooldowns();
-        cooldownTasks.runCooldownTask();
+
+        cosmeticManager = new CosmeticManager();
         cosmeticManager.loadBowTrail();
+        playerManager = new PlayerCosmeticsManager();
         registerListeners();
+        cooldownTasks = new Cooldowns();
+        cooldownTasks.runTaskTimerAsynchronously(this,100L,10L);
+        getLogger().info("------------------------------------------------");
+        getLogger().info("Enabled Plugin");
+        getLogger().info("------------------------------------------------");
+
     }
 
     @Override
@@ -93,5 +102,9 @@ public final class BWCosmetics extends JavaPlugin {
 
     public static Cooldowns getCooldownTasks() {
         return cooldownTasks;
+    }
+
+    public static WorkloadScheduler getScheduler() {
+        return scheduler;
     }
 }

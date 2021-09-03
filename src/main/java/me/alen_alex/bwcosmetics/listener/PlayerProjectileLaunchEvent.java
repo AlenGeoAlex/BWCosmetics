@@ -53,7 +53,7 @@ public class PlayerProjectileLaunchEvent implements Listener {
 
                                     bowTrial.display(eventEntity.getLocation());
                                 }
-                            }).runTaskTimerAsynchronously(BWCosmetics.getPlugin(), 0L, 10L);
+                            }).runTaskTimerAsynchronously(BWCosmetics.getPlugin(), 0L, 2L);
                             BWCosmetics.getCooldownTasks().addToBowCooldown(player.getUniqueId(), bowTrial.getCooldown());
                             return;
                         }
@@ -80,7 +80,7 @@ public class PlayerProjectileLaunchEvent implements Listener {
 
                                     bowTrial.display(eventEntity.getLocation());
                                 }
-                            }).runTaskTimerAsynchronously(BWCosmetics.getPlugin(), 0L, 10L);
+                            }).runTaskTimerAsynchronously(BWCosmetics.getPlugin(), 0L, 2L);
                             BWCosmetics.getCooldownTasks().addToBowCooldown(player.getUniqueId(), bowTrial.getCooldown());
                             return;
                         }
@@ -106,7 +106,7 @@ public class PlayerProjectileLaunchEvent implements Listener {
 
                                     bowTrial.display(eventEntity.getLocation());
                                 }
-                            }).runTaskTimerAsynchronously(BWCosmetics.getPlugin(), 0L, 10L);
+                            }).runTaskTimerAsynchronously(BWCosmetics.getPlugin(), 0L, 2L);
                             BWCosmetics.getCooldownTasks().addToBowCooldown(player.getUniqueId(), bowTrial.getCooldown());
                             return;
                         }
@@ -133,7 +133,7 @@ public class PlayerProjectileLaunchEvent implements Listener {
 
                                     bowTrial.display(eventEntity.getLocation());
                                 }
-                            }).runTaskTimerAsynchronously(BWCosmetics.getPlugin(), 0L, 10L);
+                            }).runTaskTimerAsynchronously(BWCosmetics.getPlugin(), 0L, 2L);
                             BWCosmetics.getCooldownTasks().addToBowCooldown(player.getUniqueId(), bowTrial.getCooldown());
                             return;
                         }
@@ -160,7 +160,7 @@ public class PlayerProjectileLaunchEvent implements Listener {
 
                                     bowTrial.display(eventEntity.getLocation());
                                 }
-                            }).runTaskTimerAsynchronously(BWCosmetics.getPlugin(), 0L, 10L);
+                            }).runTaskTimerAsynchronously(BWCosmetics.getPlugin(), 0L, 2L);
                             BWCosmetics.getCooldownTasks().addToBowCooldown(player.getUniqueId(), bowTrial.getCooldown());
                             return;
                         }

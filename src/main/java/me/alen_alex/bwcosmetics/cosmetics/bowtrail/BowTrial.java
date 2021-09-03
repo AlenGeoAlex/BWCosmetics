@@ -10,21 +10,24 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 public class BowTrial {
 
-    private String name;
-    private int cooldown;
-    private List<ParticleBuilder> particleBuilders;
+    private final String name;
+    private final int cooldown;
+    private final List<ParticleBuilder> particleBuilders = new ArrayList<ParticleBuilder>();
+    private final ArrayList<String> description;
 
-    public BowTrial(@NotNull String name,@NotNull List<String> particles,@NotNull int cooldown) {
+    public BowTrial(@NotNull String name,@NotNull List<String> particles,@NotNull int cooldown, List<String> description) {
         this.name = name;
         particles.forEach((particleEffect -> {
             this.particleBuilders.add(new ParticleBuilder(ParticleEffect.valueOf(particleEffect)));
         }));
         this.cooldown = cooldown;
+        this.description = new ArrayList<>(description);
     }
 
     public void display(Location location){
@@ -33,7 +36,7 @@ public class BowTrial {
                 particleBuilder.setLocation(location).display();
             }));
         };
-        WorkloadScheduler.getSyncThread().add(workload);
+        BWCosmetics.getScheduler().getSyncThread().add(workload);
     }
 
     public boolean hasPermission(Player player){
@@ -43,4 +46,17 @@ public class BowTrial {
     public int getCooldown() {
         return cooldown;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public ArrayList<String> getDescription() {
+        return description;
+    }
+
+    public boolean hasDescription(){
+        return !(this.description.isEmpty());
+    }
+
 }

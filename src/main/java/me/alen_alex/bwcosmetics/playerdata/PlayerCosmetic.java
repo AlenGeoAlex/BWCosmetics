@@ -30,12 +30,16 @@ public class PlayerCosmetic {
                 ResultSet set = BWCosmetics.getStorage().getUserData(playerUUID);
                 try {
                     if(set.next()) {
-                        if(!set.getString("bowtrial").isEmpty()) {
+                        if(set.getString("bowtrial") != null) {
                             String bowTrial = set.getString("bowtrial");
-                            if(BWCosmetics.getCosmeticManager().containsBowTrail(bowTrial))
-                                playerBowTrail = BWCosmetics.getCosmeticManager().getCachedBowTrial().get(bowTrial);
+                            if(!bowTrial.isEmpty()) {
+                                if (BWCosmetics.getCosmeticManager().containsBowTrail(bowTrial))
+                                    playerBowTrail = BWCosmetics.getCosmeticManager().getCachedBowTrial().get(bowTrial);
+                            }
                         }
                     }
+                    set.getStatement().close();
+                    set.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -54,4 +58,22 @@ public class PlayerCosmetic {
     public boolean hasBowTrail(){
         return this.playerBowTrail != null;
     }
+
+    public UUID getPlayerUUID() {
+        return playerUUID;
+    }
+
+    public void save(){
+        BWCosmetics.getStorage().saveUserData(this);
+    }
+
+    public void destroy(){
+        try {
+            this.finalize();
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }

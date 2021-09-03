@@ -1,15 +1,17 @@
 package me.alen_alex.bwcosmetics.task;
 
 import me.Abhigya.core.util.tasks.Workload;
+import me.alen_alex.bwcosmetics.BWCosmetics;
 import me.alen_alex.bwcosmetics.utility.WorkloadScheduler;
 import org.bukkit.Location;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.UUID;
 
-public class Cooldowns {
+public class Cooldowns extends BukkitRunnable {
 
     private HashMap<UUID,Long> bowTrialCooldown = new HashMap<UUID,Long>();
 
@@ -22,29 +24,42 @@ public class Cooldowns {
     }
 
     public void addToBowCooldown(UUID uuid,int seconds){
-        addToBowCooldown(uuid,(System.currentTimeMillis() * 1000 * seconds ));
+        addToBowCooldown(uuid,(System.currentTimeMillis()+((long) 1000 * seconds)));
     }
 
-    public void runCooldownTask(){
+    /*public void runCooldownTask(){
+        System.out.println("Triggered Cooldown Task");
         Workload bowTrial = () -> {
+            System.out.println("Empty");
             if(!bowTrialCooldown.isEmpty()){
-                bowTrialCooldown.entrySet().removeIf(cooldownData -> System.currentTimeMillis() >= cooldownData.getValue());
-                /*while (bowtrail.hasNext()){
+                System.out.println("Is not empty");
+                Iterator<Map.Entry<UUID,Long>> bowtrail = bowTrialCooldown.entrySet().iterator();
+                while (bowtrail.hasNext()){
                     Map.Entry<UUID,Long> cooldownData = bowtrail.next();
-                    if(System.currentTimeMillis() >= cooldownData.getValue())
+                    System.out.println(System.currentTimeMillis()+" >= "+ cooldownData.getValue());
+                    if(System.currentTimeMillis() >= cooldownData.getValue()) {
                         bowtrail.remove();
-                }*/
+                        System.out.println("Removed");
+                    }
+                }
             }
         };
 
-        Workload nextCooldown = () -> {
 
-        };
+        BWCosmetics.getScheduler().getAsyncThread().add(bowTrial);
+        //WorkloadScheduler.getAsyncThread().add(nextCooldown);
+    }*/
 
-        WorkloadScheduler.getAsyncThread().add(bowTrial);
-        WorkloadScheduler.getAsyncThread().add(nextCooldown);
-
+    @Override
+    public void run() {
+        if(!bowTrialCooldown.isEmpty()) {
+            Iterator<Map.Entry<UUID, Long>> bowtrail = bowTrialCooldown.entrySet().iterator();
+            while (bowtrail.hasNext()) {
+                Map.Entry<UUID, Long> cooldownData = bowtrail.next();
+                if (System.currentTimeMillis() >= cooldownData.getValue()) {
+                    bowtrail.remove();
+                }
+            }
+        }
     }
-
-
 }

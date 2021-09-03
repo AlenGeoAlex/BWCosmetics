@@ -1,0 +1,22 @@
+barrier:
+  name: barrier
+  particle:
+    - "BARRIER"
+    - "VILLAGER_HAPPY"
+  cooldowninSeconds: 3
+  description:
+    - "&8This trail is a combination of"
+    - "&cRed Barrier &8& &aGreen Happy Villager"
+    - ""
+    - "&c&lNOTE: &eThis trail has a cooldown of &63 secs"
+heart:
+  name: smoke
+  particle:
+    - "SMOKE_NORMAL"
+  cooldowninSeconds: 2
+  description:
+    - "&8Ever seen the smooky window up ahead?"
+    - "&8Mixes with the enviornment to"
+    - "&8create smokeness!"
+    - ""
+    - "&c&lNOTE: &eThis trail has a cooldown of &62 secs"

@@ -9,7 +9,8 @@ public class BowTrialConfig {
     private Yaml bowTrailConfig;
 
     public void generateConfig(){
-        bowTrailConfig = BWCosmetics.getFileUtils().createFile(BWCosmetics.getPlugin(), BWCosmetics.getPlugin().getResource("bowtrail.yml"),"bowtrail.yml","cosmetics");
+
+        bowTrailConfig = BWCosmetics.getFileUtils().createFile(BWCosmetics.getPlugin(),BWCosmetics.getPlugin().getResource("bowtrail.yml"),"bowtrail.yml","cosmetics");
         if(bowTrailConfig == null)
             BWCosmetics.getPlugin().getLogger().warning("Unable to create generate/load config for Bow trail!");
     }

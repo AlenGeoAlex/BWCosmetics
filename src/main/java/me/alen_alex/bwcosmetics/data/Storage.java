@@ -6,6 +6,7 @@ import me.Abhigya.core.database.sql.hikaricp.HikariClientBuilder;
 import me.Abhigya.core.database.sql.sqlite.SQLite;
 import me.alen_alex.bwcosmetics.BWCosmetics;
 import me.alen_alex.bwcosmetics.playerdata.PlayerCosmetic;
+import org.bukkit.Bukkit;
 
 import java.io.File;
 import java.io.IOException;
@@ -94,7 +95,6 @@ public class Storage {
         try {
             PreparedStatement ps = this.SQL.getConnection().prepareStatement("SELECT * FROM `cosmetics` WHERE `uuid` = '"+uuid.toString()+"';");
             ResultSet set = ps.executeQuery();
-            ps.close();
             return set;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -140,11 +140,28 @@ public class Storage {
         }
     }
 
-    /*TODO NOT COMPLETE
-    public boolean saveUserData(PlayerCosmetic cosmeticData){
-        try {
-        }
-    }*/
+    //TODO NOT COMPLETE
+    public void saveUserData(PlayerCosmetic cosmeticData){
+        if(!isConnectionOnline())
+            return;
+
+        Bukkit.getScheduler().runTaskAsynchronously(BWCosmetics.getPlugin(), new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    PreparedStatement ps = SQL.getConnection().prepareStatement("UPDATE `cosmetics` SET bowtrial = '"+cosmeticData.getPlayerBowTrail().getName()+"';");
+                    ps.executeUpdate();
+                    ps.close();
+                } catch (SQLException e) {
+                    plugin.getLogger().severe("Unable to save player data for "+cosmeticData.getPlayerUUID());
+                    plugin.getLogger().severe("Check stacktrace below");
+                    e.printStackTrace();
+                    return;
+                }
+            }
+        });
+
+    }
 
 
 }

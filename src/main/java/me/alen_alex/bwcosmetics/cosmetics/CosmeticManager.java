@@ -4,7 +4,9 @@ import de.leonhard.storage.Yaml;
 import me.Abhigya.core.particle.particlelib.ParticleEffect;
 import me.alen_alex.bwcosmetics.BWCosmetics;
 import me.alen_alex.bwcosmetics.cosmetics.bowtrail.BowTrial;
+import org.bukkit.configuration.file.YamlConfiguration;
 
+import java.io.File;
 import java.util.HashMap;
 
 public class CosmeticManager {
@@ -12,12 +14,11 @@ public class CosmeticManager {
     private HashMap<String, BowTrial> cachedBowTrial = new HashMap<String,BowTrial>();
 
     public void loadBowTrail(){
-        Yaml config = BWCosmetics.getConfiguration().getBowTrailConfig();
+        YamlConfiguration config =YamlConfiguration.loadConfiguration(BWCosmetics.getConfiguration().getBowTrailConfig().getFile());
         if(config != null){
-            for(String keySet : config.keySet()){
-                System.out.println(keySet);
+            for(String keySet : config.getKeys(false)){
                 try {
-                    cachedBowTrial.put(keySet,new BowTrial(config.getString(keySet+".name"), config.getStringList(keySet+".particle"),config.getInt(keySet+".cooldowninSeconds")));
+                    cachedBowTrial.put(keySet,new BowTrial(config.getString(keySet+".name"), config.getStringList(keySet+".particle"),config.getInt(keySet+".cooldowninSeconds"),config.getStringList(keySet+".description")));
                 }catch (IllegalArgumentException e){
                     BWCosmetics.getPlugin().getLogger().warning("Disabling Bowtrail "+config.getString(keySet+".name")+" as it seems its impossible to fetch/load data");
                     e.printStackTrace();
