@@ -1,6 +1,10 @@
 barrier:
   name: barrier
-  particle: BARRIER
+  particle:
+    - "BARRIER"
+  cooldowninSeconds: 3
 heart:
   name: smoke
-  particle: SMOKE_NORMAL
+  particle:
+    - "SMOKE_NORMAL"
+  cooldowninSeconds: 2

@@ -17,7 +17,7 @@ public class CosmeticManager {
             for(String keySet : config.keySet()){
                 System.out.println(keySet);
                 try {
-                    cachedBowTrial.put(keySet,new BowTrial(config.getString(keySet+".name"), ParticleEffect.valueOf(keySet+".particle")));
+                    cachedBowTrial.put(keySet,new BowTrial(config.getString(keySet+".name"), config.getStringList(keySet+".particle"),config.getInt(keySet+".cooldowninSeconds")));
                 }catch (IllegalArgumentException e){
                     BWCosmetics.getPlugin().getLogger().warning("Disabling Bowtrail "+config.getString(keySet+".name")+" as it seems its impossible to fetch/load data");
                     e.printStackTrace();

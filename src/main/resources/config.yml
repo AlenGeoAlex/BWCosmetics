@@ -7,7 +7,7 @@ version: "1.0"
 ##                                                                                                                    ##
 ########################################################################################################################
 ##prefix -> Prefix for the plugin messages:
-prefix: "&8[&cBridge&bPractice&8] &7: "
+prefix: "&8[&cBW&fCosmetics&8] &7: "
 ########################################################################################################################
 ##Mysql Connection Settings
 ##Everything is pretty much self explainatory
@@ -30,3 +30,9 @@ server:
 cosmetics:
   bow-trial:
     enabled: true
+    entities-enabled:
+      arrow: true
+      egg: true
+      snowball: true
+      fishhook: true
+      fireball: true

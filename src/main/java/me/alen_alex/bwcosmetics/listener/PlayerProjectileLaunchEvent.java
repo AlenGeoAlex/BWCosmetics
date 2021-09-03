@@ -25,106 +25,145 @@ public class PlayerProjectileLaunchEvent implements Listener {
          */
         if(BWCosmetics.getBwAPI().getArenaUtil().isPlaying(player) && BWCosmetics.getPlayerManager().getPlayer(player).hasBowTrail()){
             /*
-            To check whether the player has permission to use any of the bow trails
+            To check whether the player has permission to use any of the bow trails & player not in a cooldown
              */
-            if(player.hasPermission("bwc.use.bowtrail")) {
+            if(player.hasPermission("bwc.use.bowtrail") && !(BWCosmetics.getCooldownTasks().bowTrialContains(player.getUniqueId()))) {
                 final BowTrial bowTrial = BWCosmetics.getPlayerManager().getPlayer(player).getPlayerBowTrail();
                 /*
                 To check whether the player has permission to use the particular selected bow trail!
                  */
                 if (bowTrial.hasPermission(player)) {
                     if (event.getEntity() instanceof Arrow) {
-                        Arrow eventEntity = (Arrow) event.getEntity();
+                        if (BWCosmetics.getConfiguration().isBowTrailArrowEnabled()) {
+                            Arrow eventEntity = (Arrow) event.getEntity();
 
-                        (new BukkitRunnable() {
-                            @Override
-                            public void run() {
+                            (new BukkitRunnable() {
+                                @Override
+                                public void run() {
                                 /*
                                 Checks if the entity arrow is not empty...If empty it will cancel the Runnable
                                  */
-                                if (eventEntity == null)
-                                    cancel();
+                                    if (eventEntity == null)
+                                        cancel();
                                 /*
                                 Cancels the task timer incase if the arrow reached the ground or arrow has been lost
                                  */
-                                if (eventEntity.isOnGround() || !(eventEntity.isValid())  || eventEntity.isDead())
-                                    cancel();
+                                    if (eventEntity.isOnGround() || !(eventEntity.isValid()) || eventEntity.isDead())
+                                        cancel();
 
-                                bowTrial.display(eventEntity.getLocation());
-                            }
-                        }).runTaskTimerAsynchronously(BWCosmetics.getPlugin(), 0L, 10L);
-                        return;
+                                    bowTrial.display(eventEntity.getLocation());
+                                }
+                            }).runTaskTimerAsynchronously(BWCosmetics.getPlugin(), 0L, 10L);
+                            BWCosmetics.getCooldownTasks().addToBowCooldown(player.getUniqueId(), bowTrial.getCooldown());
+                            return;
+                        }
                     }
 
 
                     if (event.getEntity() instanceof Egg) {
-                        Egg eventEntity = (Egg) event.getEntity();
+                        if (BWCosmetics.getConfiguration().isBowTrailEggEnabled()) {
+                            Egg eventEntity = (Egg) event.getEntity();
 
-                        (new BukkitRunnable() {
-                            @Override
-                            public void run() {
+                            (new BukkitRunnable() {
+                                @Override
+                                public void run() {
                                 /*
                                 Checks if the entity arrow is not empty...If empty it will cancel the Runnable
                                  */
-                                if (eventEntity == null)
-                                    cancel();
+                                    if (eventEntity == null)
+                                        cancel();
                                 /*
                                 Cancels the task timer incase if the arrow reached the ground or arrow has been lost
                                  */
-                                if (eventEntity.isOnGround() || !(eventEntity.isValid())  || eventEntity.isDead())
-                                    cancel();
+                                    if (eventEntity.isOnGround() || !(eventEntity.isValid()) || eventEntity.isDead())
+                                        cancel();
 
-                                bowTrial.display(eventEntity.getLocation());
-                            }
-                        }).runTaskTimerAsynchronously(BWCosmetics.getPlugin(), 0L, 10L);
-                        return;
+                                    bowTrial.display(eventEntity.getLocation());
+                                }
+                            }).runTaskTimerAsynchronously(BWCosmetics.getPlugin(), 0L, 10L);
+                            BWCosmetics.getCooldownTasks().addToBowCooldown(player.getUniqueId(), bowTrial.getCooldown());
+                            return;
+                        }
                     }
 
                     if (event.getEntity() instanceof FishHook) {
-                        FishHook eventEntity = (FishHook) event.getEntity();
+                        if (BWCosmetics.getConfiguration().isBowTrailFishhookEnabled()) {
+                            FishHook eventEntity = (FishHook) event.getEntity();
 
-                        (new BukkitRunnable() {
-                            @Override
-                            public void run() {
+                            (new BukkitRunnable() {
+                                @Override
+                                public void run() {
                                 /*
                                 Checks if the entity arrow is not empty...If empty it will cancel the Runnable
                                  */
-                                if (eventEntity == null)
-                                    cancel();
+                                    if (eventEntity == null)
+                                        cancel();
                                 /*
                                 Cancels the task timer incase if the arrow reached the ground or arrow has been lost
                                  */
-                                if (eventEntity.isOnGround() ||  !(eventEntity.isValid())  || eventEntity.isDead())
-                                    cancel();
+                                    if (eventEntity.isOnGround() || !(eventEntity.isValid()) || eventEntity.isDead())
+                                        cancel();
 
-                                bowTrial.display(eventEntity.getLocation());
-                            }
-                        }).runTaskTimerAsynchronously(BWCosmetics.getPlugin(), 0L, 10L);
-                        return;
+                                    bowTrial.display(eventEntity.getLocation());
+                                }
+                            }).runTaskTimerAsynchronously(BWCosmetics.getPlugin(), 0L, 10L);
+                            BWCosmetics.getCooldownTasks().addToBowCooldown(player.getUniqueId(), bowTrial.getCooldown());
+                            return;
+                        }
                     }
 
                     if (event.getEntity() instanceof Snowball) {
-                        Snowball eventEntity = (Snowball) event.getEntity();
+                        if (BWCosmetics.getConfiguration().isBowTrailSnowballEnabled()) {
+                            Snowball eventEntity = (Snowball) event.getEntity();
 
-                        (new BukkitRunnable() {
-                            @Override
-                            public void run() {
+                            (new BukkitRunnable() {
+                                @Override
+                                public void run() {
                                 /*
                                 Checks if the entity arrow is not empty...If empty it will cancel the Runnable
                                  */
-                                if (eventEntity == null)
-                                    cancel();
+                                    if (eventEntity == null)
+                                        cancel();
                                 /*
                                 Cancels the task timer incase if the arrow reached the ground or arrow has been lost
                                  */
-                                if (eventEntity.isOnGround() || !(eventEntity.isValid()) || eventEntity.isDead())
-                                    cancel();
+                                    if (eventEntity.isOnGround() || !(eventEntity.isValid()) || eventEntity.isDead())
+                                        cancel();
 
 
-                                bowTrial.display(eventEntity.getLocation());
-                            }
-                        }).runTaskTimerAsynchronously(BWCosmetics.getPlugin(), 0L, 10L);
-                        return;
+                                    bowTrial.display(eventEntity.getLocation());
+                                }
+                            }).runTaskTimerAsynchronously(BWCosmetics.getPlugin(), 0L, 10L);
+                            BWCosmetics.getCooldownTasks().addToBowCooldown(player.getUniqueId(), bowTrial.getCooldown());
+                            return;
+                        }
+                    }
+
+                    if (event.getEntity() instanceof Fireball) {
+                        if (BWCosmetics.getConfiguration().isBowTrailFireballEnabled()) {
+                            Fireball eventEntity = (Fireball) event.getEntity();
+
+                            (new BukkitRunnable() {
+                                @Override
+                                public void run() {
+                                /*
+                                Checks if the entity arrow is not empty...If empty it will cancel the Runnable
+                                 */
+                                    if (eventEntity == null)
+                                        cancel();
+                                /*
+                                Cancels the task timer incase if the arrow reached the ground or arrow has been lost
+                                 */
+                                    if (eventEntity.isOnGround() || !(eventEntity.isValid()) || eventEntity.isDead())
+                                        cancel();
+
+
+                                    bowTrial.display(eventEntity.getLocation());
+                                }
+                            }).runTaskTimerAsynchronously(BWCosmetics.getPlugin(), 0L, 10L);
+                            BWCosmetics.getCooldownTasks().addToBowCooldown(player.getUniqueId(), bowTrial.getCooldown());
+                            return;
+                        }
                     }
 
                 }

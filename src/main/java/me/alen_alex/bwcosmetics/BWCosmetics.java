@@ -7,6 +7,7 @@ import me.alen_alex.bwcosmetics.data.Storage;
 import me.alen_alex.bwcosmetics.listener.PlayerJoinEvent;
 import me.alen_alex.bwcosmetics.listener.PlayerProjectileLaunchEvent;
 import me.alen_alex.bwcosmetics.playerdata.PlayerCosmeticsManager;
+import me.alen_alex.bwcosmetics.task.Cooldowns;
 import me.alen_alex.bwcosmetics.utility.FileUtils;
 import me.alen_alex.bwcosmetics.utility.WorkloadScheduler;
 import org.bukkit.Bukkit;
@@ -21,6 +22,7 @@ public final class BWCosmetics extends JavaPlugin {
     private static CosmeticManager cosmeticManager;
     private static BedWars bwAPI;
     private static PlayerCosmeticsManager playerManager;
+    private static Cooldowns cooldownTasks;
     @Override
     public void onEnable() {
         plugin = this;
@@ -45,6 +47,8 @@ public final class BWCosmetics extends JavaPlugin {
         storage.build();
         storage.tryConnection();
         storage.createDatabase();
+        cooldownTasks = new Cooldowns();
+        cooldownTasks.runCooldownTask();
         cosmeticManager.loadBowTrail();
         registerListeners();
     }
@@ -85,5 +89,9 @@ public final class BWCosmetics extends JavaPlugin {
 
     public static PlayerCosmeticsManager getPlayerManager() {
         return playerManager;
+    }
+
+    public static Cooldowns getCooldownTasks() {
+        return cooldownTasks;
     }
 }
