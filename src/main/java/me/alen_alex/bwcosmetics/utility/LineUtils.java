@@ -14,7 +14,7 @@ import java.util.concurrent.CompletableFuture;
 public class LineUtils {
 
     //Call this in an async task and spawn the particle in a sync task
-    public CompletableFuture<LinkedList<Location>> getLineLocations(Location locationA, Location locationB){
+    public static CompletableFuture<LinkedList<Location>> getLineLocations(Location locationA, Location locationB){
         CompletableFuture<LinkedList<Location>> locationList = new CompletableFuture<LinkedList<Location>>();
         Bukkit.getScheduler().runTaskAsynchronously(BWCosmetics.getPlugin(), new Runnable() {
             @Override
