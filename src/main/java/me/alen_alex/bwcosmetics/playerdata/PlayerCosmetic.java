@@ -2,6 +2,8 @@ package me.alen_alex.bwcosmetics.playerdata;
 
 import me.alen_alex.bwcosmetics.BWCosmetics;
 import me.alen_alex.bwcosmetics.cosmetics.CosmeticManager;
+import me.alen_alex.bwcosmetics.cosmetics.Shopkeeper.Shopkeeper;
+import me.alen_alex.bwcosmetics.cosmetics.Shopkeeper.ShopkeeperSkins;
 import me.alen_alex.bwcosmetics.cosmetics.bowtrail.BowTrial;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -15,11 +17,13 @@ public class PlayerCosmetic {
     private UUID playerUUID;
     private Player player;
     private BowTrial playerBowTrail;
+    private ShopkeeperSkins playerShopkeeper;
 
     public PlayerCosmetic(UUID playerUUID) {
         this.playerUUID = playerUUID;
         this.player = Bukkit.getPlayer(playerUUID);
         playerBowTrail = null;
+        playerShopkeeper = null;
         loadCosmetics();
     }
 
@@ -35,6 +39,15 @@ public class PlayerCosmetic {
                             if(!bowTrial.isEmpty()) {
                                 if (BWCosmetics.getCosmeticManager().containsBowTrail(bowTrial))
                                     playerBowTrail = BWCosmetics.getCosmeticManager().getCachedBowTrial().get(bowTrial);
+                            }
+                        }
+
+                        if(set.getString("shopkeeper") != null){
+                            String shopkeeper = set.getString("shopkeeper");
+                            if(!shopkeeper.isEmpty()){
+                                if(BWCosmetics.getCosmeticManager().containsShopkeeperskin(shopkeeper)){
+                                    playerShopkeeper = BWCosmetics.getCosmeticManager().getCachedSkins().get(shopkeeper);
+                                 }
                             }
                         }
                     }
@@ -61,6 +74,18 @@ public class PlayerCosmetic {
 
     public UUID getPlayerUUID() {
         return playerUUID;
+    }
+
+    public ShopkeeperSkins getPlayerShopkeeper() {
+        return playerShopkeeper;
+    }
+
+    public void setPlayerShopkeeper(ShopkeeperSkins playerShopkeeper) {
+        this.playerShopkeeper = playerShopkeeper;
+    }
+
+    public boolean hasShopKeeper(){
+        return this.playerShopkeeper != null;
     }
 
     public void save(){

@@ -1,0 +1,16 @@
+Blaze:
+  skintype: ENTITY
+  entity: BLAZE
+  menuItem: BLAZE_ROD
+Zombie:
+  skintype: ENTITY
+  entity: ZOMBIE
+  menuItem: ROTTEN_FLESH
+Herobrine:
+  skintype: PLAYERSKIN
+  mineskinID: 672432472
+  menuItem: WOOL
+TheKiller:
+  skintype: PLAYERSKIN
+  mineskinID: 198743
+  menuItem: WOOL

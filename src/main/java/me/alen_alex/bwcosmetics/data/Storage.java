@@ -77,7 +77,7 @@ public class Storage {
                 @Override
                 public void run() {
                     try {
-                        PreparedStatement ps = SQL.getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS `cosmetics` (`id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,`uuid` VARCHAR(50) NOT NULL,`death` VARCHAR(30),`killeffect` VARCHAR(30), `victorydance` VARCHAR(30),`bowtrial` VARCHAR(30));");
+                        PreparedStatement ps = SQL.getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS `cosmetics` (`id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,`uuid` VARCHAR(50) NOT NULL,`death` VARCHAR(30),`killeffect` VARCHAR(30), `victorydance` VARCHAR(30),`bowtrial` VARCHAR(30),`shopkeeper`  VARCHAR(30));");
                         ps.executeUpdate();
                         ps.close();
                     } catch (SQLException e) {
@@ -149,7 +149,7 @@ public class Storage {
             @Override
             public void run() {
                 try {
-                    PreparedStatement ps = SQL.getConnection().prepareStatement("UPDATE `cosmetics` SET bowtrial = '"+cosmeticData.getPlayerBowTrail().getName()+"';");
+                    PreparedStatement ps = SQL.getConnection().prepareStatement("UPDATE `cosmetics` SET `bowtrial` = '"+cosmeticData.getPlayerBowTrail().getName()+"' , `shopkeeper` = ;");
                     ps.executeUpdate();
                     ps.close();
                 } catch (SQLException e) {

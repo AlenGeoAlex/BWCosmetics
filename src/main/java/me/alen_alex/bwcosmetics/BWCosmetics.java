@@ -9,6 +9,7 @@ import me.alen_alex.bwcosmetics.listener.PlayerProjectileLaunchEvent;
 import me.alen_alex.bwcosmetics.playerdata.PlayerCosmeticsManager;
 import me.alen_alex.bwcosmetics.task.Cooldowns;
 import me.alen_alex.bwcosmetics.utility.FileUtils;
+import me.alen_alex.bwcosmetics.utility.RandomUtility;
 import me.alen_alex.bwcosmetics.utility.WorkloadScheduler;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -24,6 +25,7 @@ public final class BWCosmetics extends JavaPlugin {
     private static PlayerCosmeticsManager playerManager;
     private static Cooldowns cooldownTasks;
     private static WorkloadScheduler scheduler;
+    private static RandomUtility randomUtility;
     @Override
     public void onEnable() {
         plugin = this;
@@ -49,9 +51,9 @@ public final class BWCosmetics extends JavaPlugin {
         storage.build();
         storage.tryConnection();
         storage.createDatabase();
-
+        randomUtility = new RandomUtility(this);
         cosmeticManager = new CosmeticManager();
-        cosmeticManager.loadBowTrail();
+        cosmeticManager.loadCosmetics();
         playerManager = new PlayerCosmeticsManager();
         registerListeners();
         cooldownTasks = new Cooldowns();
@@ -106,5 +108,9 @@ public final class BWCosmetics extends JavaPlugin {
 
     public static WorkloadScheduler getScheduler() {
         return scheduler;
+    }
+
+    public static RandomUtility getRandomUtility() {
+        return randomUtility;
     }
 }

@@ -1,5 +1,6 @@
 package me.alen_alex.bwcosmetics.cosmetics.bowtrail;
 
+import com.andrei1058.bedwars.api.arena.team.ITeam;
 import me.Abhigya.core.particle.particlelib.ParticleBuilder;
 import me.Abhigya.core.particle.particlelib.ParticleEffect;
 import me.Abhigya.core.util.tasks.Workload;

@@ -15,6 +15,8 @@ public class Cooldowns extends BukkitRunnable {
 
     private HashMap<UUID,Long> bowTrialCooldown = new HashMap<UUID,Long>();
 
+    private HashMap<UUID,Long> shopkeeperskin = new HashMap<UUID,Long>();
+
     public boolean bowTrialContains(UUID uuid){
         return bowTrialCooldown.containsKey(uuid);
     }
@@ -26,6 +28,20 @@ public class Cooldowns extends BukkitRunnable {
     public void addToBowCooldown(UUID uuid,int seconds){
         addToBowCooldown(uuid,(System.currentTimeMillis()+((long) 1000 * seconds)));
     }
+
+    public boolean shopKeeperCooldownContains(UUID uuid){
+        return shopkeeperskin.containsKey(uuid);
+    }
+
+    public void addToShopKeeperCooldown(UUID uuid,long timestamp){
+        shopkeeperskin.put(uuid,timestamp);
+    }
+
+    public void addToShopKeeperCooldown(UUID uuid,int seconds){
+        addToShopKeeperCooldown(uuid,(System.currentTimeMillis()+((long) 1000 * seconds)));
+    }
+
+
 
     /*public void runCooldownTask(){
         System.out.println("Triggered Cooldown Task");

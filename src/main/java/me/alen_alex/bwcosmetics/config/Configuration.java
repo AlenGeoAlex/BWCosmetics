@@ -10,8 +10,11 @@ public class Configuration {
     private String sqlHost,sqlUsername,sqlPassword,sqlPort,sqlDatabase,prefixMain;
     private boolean usingMysql,sslEnabled;
     private boolean bowtrialEnabled,bowTrailEggEnabled,bowTrailFishhookEnabled,bowTrailArrowEnabled,bowTrailFireballEnabled,bowTrailSnowballEnabled;
+    private boolean shopkeeperEnabled,shopkeeperCooldownEnabled,shopkeeperRandom;
+    private int shopKeeperCooldown;
 
     private BowTrialConfig bowTrialConfig;
+    private ShopKeeperConfig shopKeeperConfig;
 
     public boolean createConfiguration(BWCosmetics plugin){
         config = BWCosmetics.getFileUtils().createConfiguration(plugin);
@@ -27,6 +30,11 @@ public class Configuration {
         if(isBowtrialEnabled()){
             bowTrialConfig = new BowTrialConfig();
             bowTrialConfig.generateConfig();
+        }
+
+        if(isShopkeeperEnabled()){
+            shopKeeperConfig = new ShopKeeperConfig();
+            shopKeeperConfig.generateConfig();
         }
     }
 
@@ -44,6 +52,10 @@ public class Configuration {
         bowTrailSnowballEnabled = config.getBoolean("cosmetics.bow-trial.entities-enabled.snowball");
         bowTrailFishhookEnabled = config.getBoolean("cosmetics.bow-trial.entities-enabled.fishhook");
         bowTrailFireballEnabled =  config.getBoolean("cosmetics.bow-trial.entities-enabled.fireball");
+        shopkeeperEnabled = config.getBoolean("cosmetics.shopkeeper.enabled");
+        shopkeeperCooldownEnabled = config.getBoolean("cosmetics.shopkeeper.cooldown.enabled");
+        shopKeeperCooldown = config.getInt("cosmetics.shopkeeper.cooldown.cooldownInSecs");
+        shopkeeperRandom = config.getBoolean("cosmetics.shopkeeper.randomize-player-selection-each-time");
     }
 
     public Config getConfig() {
@@ -110,4 +122,23 @@ public class Configuration {
         return bowTrailSnowballEnabled;
     }
 
+    public boolean isShopkeeperEnabled() {
+        return shopkeeperEnabled;
+    }
+
+    public boolean isShopkeeperCooldownEnabled() {
+        return shopkeeperCooldownEnabled;
+    }
+
+    public int getShopKeeperCooldown() {
+        return shopKeeperCooldown;
+    }
+
+    public Yaml getShopKeeperConfig() {
+        return shopKeeperConfig.getShopkeeperConfig();
+    }
+
+    public boolean isShopkeeperRandom() {
+        return shopkeeperRandom;
+    }
 }

@@ -36,3 +36,9 @@ cosmetics:
       snowball: true
       fishhook: true
       fireball: true
+  shopkeeper:
+    enabled: true
+    cooldown:
+      enabled: true
+      cooldownInSecs: 600
+    randomize-player-selection-each-time: true
