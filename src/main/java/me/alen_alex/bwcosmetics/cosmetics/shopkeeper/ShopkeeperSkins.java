@@ -1,21 +1,13 @@
-package me.alen_alex.bwcosmetics.cosmetics.Shopkeeper;
+package me.alen_alex.bwcosmetics.cosmetics.shopkeeper;
 
-import es.eltrueno.npc.TruenoNPC;
-import es.eltrueno.npc.TruenoNPCApi;
 import es.eltrueno.npc.skin.TruenoNPCSkin;
 import es.eltrueno.npc.skin.TruenoNPCSkinBuilder;
-import me.Abhigya.core.util.xseries.XMaterial;
 import me.alen_alex.bwcosmetics.BWCosmetics;
 import me.alen_alex.bwcosmetics.utility.SkinType;
-import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.List;
 
 public class ShopkeeperSkins {
 

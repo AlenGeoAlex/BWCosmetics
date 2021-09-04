@@ -1,14 +1,11 @@
 package me.alen_alex.bwcosmetics.cosmetics;
 
-import de.leonhard.storage.Yaml;
-import me.Abhigya.core.particle.particlelib.ParticleEffect;
 import me.alen_alex.bwcosmetics.BWCosmetics;
-import me.alen_alex.bwcosmetics.cosmetics.Shopkeeper.ShopkeeperSkins;
+import me.alen_alex.bwcosmetics.cosmetics.shopkeeper.ShopkeeperSkins;
 import me.alen_alex.bwcosmetics.cosmetics.bowtrail.BowTrial;
 import me.alen_alex.bwcosmetics.utility.SkinType;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import java.io.File;
 import java.util.HashMap;
 
 public class CosmeticManager {

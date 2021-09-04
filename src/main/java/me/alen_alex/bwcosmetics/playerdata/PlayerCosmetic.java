@@ -1,9 +1,7 @@
 package me.alen_alex.bwcosmetics.playerdata;
 
 import me.alen_alex.bwcosmetics.BWCosmetics;
-import me.alen_alex.bwcosmetics.cosmetics.CosmeticManager;
-import me.alen_alex.bwcosmetics.cosmetics.Shopkeeper.Shopkeeper;
-import me.alen_alex.bwcosmetics.cosmetics.Shopkeeper.ShopkeeperSkins;
+import me.alen_alex.bwcosmetics.cosmetics.shopkeeper.ShopkeeperSkins;
 import me.alen_alex.bwcosmetics.cosmetics.bowtrail.BowTrial;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

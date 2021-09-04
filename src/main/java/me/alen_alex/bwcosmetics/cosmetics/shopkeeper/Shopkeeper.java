@@ -1,4 +1,4 @@
-package me.alen_alex.bwcosmetics.cosmetics.Shopkeeper;
+package me.alen_alex.bwcosmetics.cosmetics.shopkeeper;
 
 import com.andrei1058.bedwars.api.arena.IArena;
 import com.andrei1058.bedwars.api.arena.team.ITeam;
