@@ -17,7 +17,7 @@ public class Configuration {
     private ShopKeeperConfig shopKeeperConfig;
 
     public boolean createConfiguration(BWCosmetics plugin){
-        config = BWCosmetics.getFileUtils().createConfiguration(plugin);
+        config = BWCosmetics.getPlugin().getFileUtils().createConfiguration(plugin);
         if(config != null){
             loadConfiguration();
             createOtherFiles();

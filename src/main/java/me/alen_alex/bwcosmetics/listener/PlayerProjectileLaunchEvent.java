@@ -23,18 +23,18 @@ public class PlayerProjectileLaunchEvent implements Listener {
         /*
         Check whether the given player is currently on game and he has selected a bow trail
          */
-        if(BWCosmetics.getBwAPI().getArenaUtil().isPlaying(player) && BWCosmetics.getPlayerManager().getPlayer(player).hasBowTrail()){
+        if(BWCosmetics.getPlugin().getBwAPI().getArenaUtil().isPlaying(player) && BWCosmetics.getPlugin().getPlayerManager().getPlayer(player).hasBowTrail()){
             /*
             To check whether the player has permission to use any of the bow trails & player not in a cooldown
              */
-            if(player.hasPermission("bwc.use.bowtrail") && !(BWCosmetics.getCooldownTasks().bowTrialContains(player.getUniqueId()))) {
-                final BowTrial bowTrial = BWCosmetics.getPlayerManager().getPlayer(player).getPlayerBowTrail();
+            if(player.hasPermission("bwc.use.bowtrail") && !(BWCosmetics.getPlugin().getCooldownTasks().bowTrialContains(player.getUniqueId()))) {
+                final BowTrial bowTrial = BWCosmetics.getPlugin().getPlayerManager().getPlayer(player).getPlayerBowTrail();
                 /*
                 To check whether the player has permission to use the particular selected bow trail!
                  */
                 if (bowTrial.hasPermission(player)) {
                     if (event.getEntity() instanceof Arrow) {
-                        if (BWCosmetics.getConfiguration().isBowTrailArrowEnabled()) {
+                        if (BWCosmetics.getPlugin().getConfiguration().isBowTrailArrowEnabled()) {
                             Arrow eventEntity = (Arrow) event.getEntity();
 
                             (new BukkitRunnable() {
@@ -54,14 +54,14 @@ public class PlayerProjectileLaunchEvent implements Listener {
                                     bowTrial.display(eventEntity.getLocation());
                                 }
                             }).runTaskTimerAsynchronously(BWCosmetics.getPlugin(), 0L, 2L);
-                            BWCosmetics.getCooldownTasks().addToBowCooldown(player.getUniqueId(), bowTrial.getCooldown());
+                            BWCosmetics.getPlugin().getCooldownTasks().addToBowCooldown(player.getUniqueId(), bowTrial.getCooldown());
                             return;
                         }
                     }
 
 
                     if (event.getEntity() instanceof Egg) {
-                        if (BWCosmetics.getConfiguration().isBowTrailEggEnabled()) {
+                        if (BWCosmetics.getPlugin().getConfiguration().isBowTrailEggEnabled()) {
                             Egg eventEntity = (Egg) event.getEntity();
 
                             (new BukkitRunnable() {
@@ -81,13 +81,13 @@ public class PlayerProjectileLaunchEvent implements Listener {
                                     bowTrial.display(eventEntity.getLocation());
                                 }
                             }).runTaskTimerAsynchronously(BWCosmetics.getPlugin(), 0L, 2L);
-                            BWCosmetics.getCooldownTasks().addToBowCooldown(player.getUniqueId(), bowTrial.getCooldown());
+                            BWCosmetics.getPlugin().getCooldownTasks().addToBowCooldown(player.getUniqueId(), bowTrial.getCooldown());
                             return;
                         }
                     }
 
                     if (event.getEntity() instanceof FishHook) {
-                        if (BWCosmetics.getConfiguration().isBowTrailFishhookEnabled()) {
+                        if (BWCosmetics.getPlugin().getConfiguration().isBowTrailFishhookEnabled()) {
                             FishHook eventEntity = (FishHook) event.getEntity();
 
                             (new BukkitRunnable() {
@@ -107,13 +107,13 @@ public class PlayerProjectileLaunchEvent implements Listener {
                                     bowTrial.display(eventEntity.getLocation());
                                 }
                             }).runTaskTimerAsynchronously(BWCosmetics.getPlugin(), 0L, 2L);
-                            BWCosmetics.getCooldownTasks().addToBowCooldown(player.getUniqueId(), bowTrial.getCooldown());
+                            BWCosmetics.getPlugin().getCooldownTasks().addToBowCooldown(player.getUniqueId(), bowTrial.getCooldown());
                             return;
                         }
                     }
 
                     if (event.getEntity() instanceof Snowball) {
-                        if (BWCosmetics.getConfiguration().isBowTrailSnowballEnabled()) {
+                        if (BWCosmetics.getPlugin().getConfiguration().isBowTrailSnowballEnabled()) {
                             Snowball eventEntity = (Snowball) event.getEntity();
 
                             (new BukkitRunnable() {
@@ -134,13 +134,13 @@ public class PlayerProjectileLaunchEvent implements Listener {
                                     bowTrial.display(eventEntity.getLocation());
                                 }
                             }).runTaskTimerAsynchronously(BWCosmetics.getPlugin(), 0L, 2L);
-                            BWCosmetics.getCooldownTasks().addToBowCooldown(player.getUniqueId(), bowTrial.getCooldown());
+                            BWCosmetics.getPlugin().getCooldownTasks().addToBowCooldown(player.getUniqueId(), bowTrial.getCooldown());
                             return;
                         }
                     }
 
                     if (event.getEntity() instanceof Fireball) {
-                        if (BWCosmetics.getConfiguration().isBowTrailFireballEnabled()) {
+                        if (BWCosmetics.getPlugin().getConfiguration().isBowTrailFireballEnabled()) {
                             Fireball eventEntity = (Fireball) event.getEntity();
 
                             (new BukkitRunnable() {
@@ -161,7 +161,7 @@ public class PlayerProjectileLaunchEvent implements Listener {
                                     bowTrial.display(eventEntity.getLocation());
                                 }
                             }).runTaskTimerAsynchronously(BWCosmetics.getPlugin(), 0L, 2L);
-                            BWCosmetics.getCooldownTasks().addToBowCooldown(player.getUniqueId(), bowTrial.getCooldown());
+                            BWCosmetics.getPlugin().getCooldownTasks().addToBowCooldown(player.getUniqueId(), bowTrial.getCooldown());
                             return;
                         }
                     }

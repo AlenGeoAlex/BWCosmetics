@@ -18,14 +18,14 @@ public class CosmeticManager {
     private HashMap<IArena, Shopkeeper> currentGames = new HashMap<IArena,Shopkeeper>();
 
     public void loadCosmetics(){
-        if(BWCosmetics.getConfiguration().isBowtrialEnabled())
+        if(BWCosmetics.getPlugin().getConfiguration().isBowtrialEnabled())
             loadBowTrail();
-        if(BWCosmetics.getConfiguration().isShopkeeperEnabled() && BWCosmetics.getPlugin().isCitizensEnabled())
+        if(BWCosmetics.getPlugin().getConfiguration().isShopkeeperEnabled() && BWCosmetics.getPlugin().isCitizensEnabled())
             loadShopkeeperSkins();
     }
 
     private void loadBowTrail(){
-        YamlConfiguration config =YamlConfiguration.loadConfiguration(BWCosmetics.getConfiguration().getBowTrailConfig().getFile());
+        YamlConfiguration config =YamlConfiguration.loadConfiguration(BWCosmetics.getPlugin().getConfiguration().getBowTrailConfig().getFile());
         if(config != null){
             for(String keySet : config.getKeys(false)){
                 try {
@@ -42,7 +42,7 @@ public class CosmeticManager {
     }
 
     private void loadShopkeeperSkins(){
-        YamlConfiguration config2 = YamlConfiguration.loadConfiguration(BWCosmetics.getConfiguration().getShopKeeperConfig().getFile());
+        YamlConfiguration config2 = YamlConfiguration.loadConfiguration(BWCosmetics.getPlugin().getConfiguration().getShopKeeperConfig().getFile());
         if(config2 != null){
             for(String keySet : config2.getKeys(false)){
                 try {

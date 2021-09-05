@@ -9,7 +9,7 @@ public class ShopKeeperConfig {
 
     public void generateConfig(){
 
-        shopkeeperConfig = BWCosmetics.getFileUtils().createFile(BWCosmetics.getPlugin(),BWCosmetics.getPlugin().getResource("shopkeepers.yml"),"shopkeepers.yml","cosmetics");
+        shopkeeperConfig = BWCosmetics.getPlugin().getFileUtils().createFile(BWCosmetics.getPlugin(),BWCosmetics.getPlugin().getResource("shopkeepers.yml"),"shopkeepers.yml","cosmetics");
         if(shopkeeperConfig == null)
             BWCosmetics.getPlugin().getLogger().warning("Unable to create generate/load config for Bow trail!");
     }

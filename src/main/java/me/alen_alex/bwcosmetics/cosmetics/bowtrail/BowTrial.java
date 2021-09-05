@@ -37,7 +37,7 @@ public class BowTrial {
                 particleBuilder.setLocation(location).display();
             }));
         };
-        BWCosmetics.getScheduler().getSyncThread().add(workload);
+        BWCosmetics.getPlugin().getScheduler().getSyncThread().add(workload);
     }
 
     public boolean hasPermission(Player player){

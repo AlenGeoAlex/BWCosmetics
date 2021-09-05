@@ -57,13 +57,13 @@ public class Shopkeeper {
         teams.forEach((iTeam -> {
             List<Player> hasShopkeeperskins = new ArrayList<>();
             for (Player player : iTeam.getMembers()) {
-                if (BWCosmetics.getPlayerManager().getPlayer(player).hasShopKeeper() && !(BWCosmetics.getCooldownTasks().shopKeeperCooldownContains(player.getUniqueId())))
+                if (plugin.getPlayerManager().getPlayer(player).hasShopKeeper() && !(plugin.getCooldownTasks().shopKeeperCooldownContains(player.getUniqueId())))
                     hasShopkeeperskins.add(player);
             }
 
             if (!hasShopkeeperskins.isEmpty()) {
-                if (BWCosmetics.getConfiguration().isShopkeeperRandom())
-                    playerSelected.put(iTeam, hasShopkeeperskins.get(BWCosmetics.getRandomUtility().refreshAndGetRandom(hasShopkeeperskins.size())));
+                if (BWCosmetics.getPlugin().getConfiguration().isShopkeeperRandom())
+                    playerSelected.put(iTeam, hasShopkeeperskins.get(plugin.getRandomUtility().refreshAndGetRandom(hasShopkeeperskins.size())));
                 else
                     playerSelected.put(iTeam,hasShopkeeperskins.get(0));
             }
@@ -84,12 +84,12 @@ public class Shopkeeper {
                     for (Entity entity : entitiesNearTeam) {
                         if(entity.getLocation().distance(shopEntity.getValue()) <= 1D) {
                             if (!spawned) {
-                                if (BWCosmetics.getPlayerManager().contains(playerSelected.get(shopEntity.getKey()).getUniqueId())) {
+                                if (BWCosmetics.getPlugin().getPlayerManager().contains(playerSelected.get(shopEntity.getKey()).getUniqueId())) {
                                     final Location entityLocation = entity.getLocation();
                                     final Player playerSorted = playerSelected.get(shopEntity.getKey());
                                     final ITeam playerTeam = shopEntity.getKey();
                                     entity.remove();
-                                    npcs.add(spawnNPC(entityLocation,BWCosmetics.getPlayerManager().getPlayer(playerSorted).getPlayerShopkeeper()));
+                                    npcs.add(spawnNPC(entityLocation,plugin.getPlayerManager().getPlayer(playerSorted).getPlayerShopkeeper()));
                                     spawned = true;
                                 }
                             }
@@ -107,12 +107,12 @@ public class Shopkeeper {
                 if(!entitiesNearTeam.isEmpty()) {
                     for (Entity entity : entitiesNearTeam) {
                         if(entity.getLocation().distance(upgNPC.getValue()) <= 1D) {
-                            if( BWCosmetics.getPlayerManager().contains(playerSelected.get(upgNPC.getKey()).getUniqueId()) ){
+                            if( BWCosmetics.getPlugin().getPlayerManager().contains(playerSelected.get(upgNPC.getKey()).getUniqueId()) ){
                                 final Location entityLocation = entity.getLocation();
                                 final Player playerSorted = playerSelected.get(upgNPC.getKey());
                                 final ITeam playerTeam = upgNPC.getKey();
                                 entity.remove();
-                                npcs.add(spawnNPC(entityLocation,BWCosmetics.getPlayerManager().getPlayer(playerSorted).getPlayerShopkeeper()));
+                                npcs.add(spawnNPC(entityLocation,plugin.getPlayerManager().getPlayer(playerSorted).getPlayerShopkeeper()));
                             }
                         }
                     }
@@ -134,11 +134,11 @@ public class Shopkeeper {
         if(skinData.getSkinType() == SkinType.PLAYERSKIN){
             npc = plugin.getNpcRegistry().createNPC(EntityType.PLAYER,"");
             npc.getOrAddTrait(SkinTrait.class).setSkinPersistent(skinData.getName(),skinData.getSkinSignature(),skinData.getSkinTexture());
-        }else if(skinData.getSkinType() == SkinType.ENTITY){
+        }else if(skinData.getSkinType() == SkinType.ENTITY)
             npc = plugin.getNpcRegistry().createNPC(skinData.getEntityType(),"");
-        }else{
+        else
             npc = plugin.getNpcRegistry().createNPC(EntityType.VILLAGER,"");
-        }
+
         if(npc != null){
             npc.setUseMinecraftAI(false);
             npc.setFlyable(false);
@@ -146,7 +146,7 @@ public class Shopkeeper {
             npc.setAlwaysUseNameHologram(false);
             npc.spawn(location);
             npc.data().setPersistent(NPC.NAMEPLATE_VISIBLE_METADATA, false);
-
+            npc.faceLocation(location);
         }
         return npc;
     }

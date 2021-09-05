@@ -29,7 +29,7 @@ public class Storage {
 
     public void build(){
         if(mysqlEnabled){
-            this.sqlDatabase = new HikariClientBuilder("jdbc:mysql://"+BWCosmetics.getConfiguration().getSqlHost()+":"+BWCosmetics.getConfiguration().getSqlPort()+"/"+BWCosmetics.getConfiguration().getSqlDatabase(),BWCosmetics.getConfiguration().getSqlUsername(),BWCosmetics.getConfiguration().getSqlPassword(),true).setMaximumPoolSize(10).build();
+            this.sqlDatabase = new HikariClientBuilder("jdbc:mysql://"+BWCosmetics.getPlugin().getConfiguration().getSqlHost()+":"+BWCosmetics.getPlugin().getConfiguration().getSqlPort()+"/"+BWCosmetics.getPlugin().getConfiguration().getSqlDatabase(),BWCosmetics.getPlugin().getConfiguration().getSqlUsername(),BWCosmetics.getPlugin().getConfiguration().getSqlPassword(),true).setMaximumPoolSize(10).build();
             try {
                 sqlDatabase.connect();
             } catch (Exception e) {

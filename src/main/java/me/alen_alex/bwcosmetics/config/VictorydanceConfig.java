@@ -8,7 +8,7 @@ public class VictorydanceConfig {
      public static Yaml victorydanceConfig;
 
     public void generateConfig(){
-        victorydanceConfig = BWCosmetics.getFileUtils().createFile(BWCosmetics.getPlugin(),BWCosmetics.getPlugin().getResource("victorydance.yml"),"victorydance.yml","cosmetics");
+        victorydanceConfig = BWCosmetics.getPlugin().getFileUtils().createFile(BWCosmetics.getPlugin(),BWCosmetics.getPlugin().getResource("victorydance.yml"),"victorydance.yml","cosmetics");
 
     }
     public static Yaml getvictorydanceConfig(){

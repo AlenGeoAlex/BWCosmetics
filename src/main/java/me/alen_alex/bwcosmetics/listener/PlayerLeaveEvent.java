@@ -12,10 +12,10 @@ public class PlayerLeaveEvent implements Listener {
     @EventHandler
     public void onPlayerLeaveEvent(PlayerQuitEvent event){
         UUID uuid = event.getPlayer().getUniqueId();
-        if(BWCosmetics.getPlayerManager().contains(uuid)){
-            BWCosmetics.getPlayerManager().getPlayer(uuid).save();
-            BWCosmetics.getPlayerManager().getPlayer(uuid).destroy();
-            BWCosmetics.getPlayerManager().getCachedPlayer().remove(uuid);
+        if(BWCosmetics.getPlugin().getPlayerManager().contains(uuid)){
+            BWCosmetics.getPlugin().getPlayerManager().getPlayer(uuid).save();
+            BWCosmetics.getPlugin().getPlayerManager().getPlayer(uuid).destroy();
+            BWCosmetics.getPlugin().getPlayerManager().getCachedPlayer().remove(uuid);
         }
     }
 

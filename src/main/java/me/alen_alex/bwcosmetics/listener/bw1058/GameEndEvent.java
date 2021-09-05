@@ -11,9 +11,9 @@ public class GameEndEvent implements Listener {
     public void onGameEndEvent(com.andrei1058.bedwars.api.events.gameplay.GameEndEvent event){
         if(BWCosmetics.getPlugin().isCitizensEnabled()) {
             IArena arena = event.getArena();
-            if (!BWCosmetics.getCosmeticManager().containsCurrentGame(arena)) {
-                BWCosmetics.getCosmeticManager().getCurrentGameSkins(arena).removeSpawnedNPC();
-                BWCosmetics.getCosmeticManager().getCurrentGames().remove(arena);
+            if (!BWCosmetics.getPlugin().getCosmeticManager().containsCurrentGame(arena)) {
+                BWCosmetics.getPlugin().getCosmeticManager().getCurrentGameSkins(arena).removeSpawnedNPC();
+                BWCosmetics.getPlugin().getCosmeticManager().getCurrentGames().remove(arena);
             }
         }
     }

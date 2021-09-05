@@ -15,9 +15,9 @@ public class GameStateChangeEvent implements Listener {
             if (event.getNewState() != GameState.playing)
                 return;
 
-            BWCosmetics.getCosmeticManager().getCurrentGames().put(event.getArena(), new Shopkeeper(BWCosmetics.getPlugin(), event.getArena()));
-            if (BWCosmetics.getCosmeticManager().containsCurrentGame(event.getArena())) {
-                Shopkeeper currentGameSkin = BWCosmetics.getCosmeticManager().getCurrentGameSkins(event.getArena());
+            BWCosmetics.getPlugin().getCosmeticManager().getCurrentGames().put(event.getArena(), new Shopkeeper(BWCosmetics.getPlugin(), event.getArena()));
+            if (BWCosmetics.getPlugin().getCosmeticManager().containsCurrentGame(event.getArena())) {
+                Shopkeeper currentGameSkin = BWCosmetics.getPlugin().getCosmeticManager().getCurrentGameSkins(event.getArena());
                 currentGameSkin.selectRandomPlayer();
                 Bukkit.getScheduler().runTaskLater(BWCosmetics.getPlugin(), new Runnable() {
                     @Override

@@ -29,22 +29,22 @@ public class PlayerCosmetic {
         Bukkit.getScheduler().runTaskAsynchronously(BWCosmetics.getPlugin(), new Runnable() {
             @Override
             public void run() {
-                ResultSet set = BWCosmetics.getStorage().getUserData(playerUUID);
+                ResultSet set = BWCosmetics.getPlugin().getStorage().getUserData(playerUUID);
                 try {
                     if(set.next()) {
                         if(set.getString("bowtrial") != null) {
                             String bowTrial = set.getString("bowtrial");
                             if(!bowTrial.isEmpty()) {
-                                if (BWCosmetics.getCosmeticManager().containsBowTrail(bowTrial))
-                                    playerBowTrail = BWCosmetics.getCosmeticManager().getCachedBowTrial().get(bowTrial);
+                                if (BWCosmetics.getPlugin().getCosmeticManager().containsBowTrail(bowTrial))
+                                    playerBowTrail = BWCosmetics.getPlugin().getCosmeticManager().getCachedBowTrial().get(bowTrial);
                             }
                         }
 
                         if(set.getString("shopkeeper") != null){
                             String shopkeeper = set.getString("shopkeeper");
                             if(!shopkeeper.isEmpty()){
-                                if(BWCosmetics.getCosmeticManager().containsShopkeeperskin(shopkeeper)){
-                                    playerShopkeeper = BWCosmetics.getCosmeticManager().getCachedSkins().get(shopkeeper);
+                                if(BWCosmetics.getPlugin().getCosmeticManager().containsShopkeeperskin(shopkeeper)){
+                                    playerShopkeeper = BWCosmetics.getPlugin().getCosmeticManager().getCachedSkins().get(shopkeeper);
                                  }
                             }
                         }
@@ -87,7 +87,7 @@ public class PlayerCosmetic {
     }
 
     public void save(){
-        BWCosmetics.getStorage().saveUserData(this);
+        BWCosmetics.getPlugin().getStorage().saveUserData(this);
     }
 
     public void destroy(){

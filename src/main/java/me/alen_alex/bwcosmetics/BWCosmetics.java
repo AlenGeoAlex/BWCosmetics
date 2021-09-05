@@ -1,6 +1,8 @@
 package me.alen_alex.bwcosmetics;
 
 import com.andrei1058.bedwars.api.BedWars;
+
+import me.alen_alex.bwcosmetics.cache.CacheManager;
 import me.alen_alex.bwcosmetics.config.Configuration;
 import me.alen_alex.bwcosmetics.cosmetics.CosmeticManager;
 import me.alen_alex.bwcosmetics.data.Storage;
@@ -31,6 +33,7 @@ public final class BWCosmetics extends JavaPlugin {
     private static Cooldowns cooldownTasks;
     private static WorkloadScheduler scheduler;
     private static RandomUtility randomUtility;
+    private static CacheManager cacheManager;
     private boolean bedwarsEnabled = false,citizensEnabled = false;
     private NPCRegistry npcRegistry;
     @Override
@@ -58,6 +61,13 @@ public final class BWCosmetics extends JavaPlugin {
         configuration = new Configuration();
         if(!configuration.createConfiguration(this)){
             getLogger().severe("Unable to create configuration file.");
+            getLogger().severe("Plugin will be disabled!");
+            getServer().getPluginManager().disablePlugin(this);
+            return;
+        }
+        cacheManager = new CacheManager(this);
+        if(!cacheManager.buildCache()){
+            getLogger().severe("Unable to create cache file.");
             getLogger().severe("Plugin will be disabled!");
             getServer().getPluginManager().disablePlugin(this);
             return;
@@ -101,39 +111,39 @@ public final class BWCosmetics extends JavaPlugin {
         return plugin;
     }
 
-    public static FileUtils getFileUtils() {
+    public FileUtils getFileUtils() {
         return fileUtils;
     }
 
-    public static Configuration getConfiguration() {
+    public Configuration getConfiguration() {
         return configuration;
     }
 
-    public static Storage getStorage() {
+    public Storage getStorage() {
         return storage;
     }
 
-    public static CosmeticManager getCosmeticManager() {
+    public CosmeticManager getCosmeticManager() {
         return cosmeticManager;
     }
 
-    public static BedWars getBwAPI() {
+    public BedWars getBwAPI() {
         return bwAPI;
     }
 
-    public static PlayerCosmeticsManager getPlayerManager() {
+    public PlayerCosmeticsManager getPlayerManager() {
         return playerManager;
     }
 
-    public static Cooldowns getCooldownTasks() {
+    public Cooldowns getCooldownTasks() {
         return cooldownTasks;
     }
 
-    public static WorkloadScheduler getScheduler() {
+    public WorkloadScheduler getScheduler() {
         return scheduler;
     }
 
-    public static RandomUtility getRandomUtility() {
+    public RandomUtility getRandomUtility() {
         return randomUtility;
     }
 
@@ -147,5 +157,9 @@ public final class BWCosmetics extends JavaPlugin {
 
     public NPCRegistry getNpcRegistry() {
         return npcRegistry;
+    }
+
+    public static CacheManager getCacheManager() {
+        return cacheManager;
     }
 }
