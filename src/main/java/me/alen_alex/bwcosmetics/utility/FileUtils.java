@@ -1,12 +1,12 @@
 package me.alen_alex.bwcosmetics.utility;
 
 import de.leonhard.storage.Config;
+import de.leonhard.storage.Json;
 import de.leonhard.storage.LightningBuilder;
 import de.leonhard.storage.Yaml;
 import de.leonhard.storage.internal.settings.ConfigSettings;
 import de.leonhard.storage.internal.settings.DataType;
 import de.leonhard.storage.internal.settings.ReloadSettings;
-import io.netty.handler.ssl.SslContext;
 import me.alen_alex.bwcosmetics.BWCosmetics;
 
 import java.io.File;
@@ -68,6 +68,13 @@ public class FileUtils {
         if(!generateFolder(plugin,folderName))
             plugin.getLogger().info("The folder"+folderName+" already exist..Continuing creation of the file "+fileName);
         return new Yaml(fileName,plugin.getDataFolder()+File.separator+folderName);
+    }
+
+    public Json createJSONFile(BWCosmetics plugin,String fileName,String folderName){
+        if(!generateFolder(plugin,folderName))
+            plugin.getLogger().info("The folder"+folderName+" already exist..Continuing creation of the file "+fileName);
+        return new Json(fileName,plugin.getDataFolder()+File.separator+folderName);
+
     }
 
 

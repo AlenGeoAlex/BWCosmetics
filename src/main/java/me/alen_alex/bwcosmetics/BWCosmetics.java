@@ -5,12 +5,17 @@ import me.alen_alex.bwcosmetics.config.Configuration;
 import me.alen_alex.bwcosmetics.cosmetics.CosmeticManager;
 import me.alen_alex.bwcosmetics.data.Storage;
 import me.alen_alex.bwcosmetics.listener.PlayerJoinEvent;
+import me.alen_alex.bwcosmetics.listener.PlayerLeaveEvent;
 import me.alen_alex.bwcosmetics.listener.PlayerProjectileLaunchEvent;
+import me.alen_alex.bwcosmetics.listener.bw1058.GameEndEvent;
+import me.alen_alex.bwcosmetics.listener.bw1058.GameStateChangeEvent;
 import me.alen_alex.bwcosmetics.playerdata.PlayerCosmeticsManager;
 import me.alen_alex.bwcosmetics.task.Cooldowns;
 import me.alen_alex.bwcosmetics.utility.FileUtils;
 import me.alen_alex.bwcosmetics.utility.RandomUtility;
 import me.alen_alex.bwcosmetics.utility.WorkloadScheduler;
+import net.citizensnpcs.api.CitizensAPI;
+import net.citizensnpcs.api.npc.NPCRegistry;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -26,6 +31,8 @@ public final class BWCosmetics extends JavaPlugin {
     private static Cooldowns cooldownTasks;
     private static WorkloadScheduler scheduler;
     private static RandomUtility randomUtility;
+    private boolean bedwarsEnabled = false,citizensEnabled = false;
+    private NPCRegistry npcRegistry;
     @Override
     public void onEnable() {
         plugin = this;
@@ -36,6 +43,16 @@ public final class BWCosmetics extends JavaPlugin {
             return;
         }else{
             bwAPI = Bukkit.getServicesManager().getRegistration(BedWars .class).getProvider();
+            bedwarsEnabled = true;
+        }
+        if(!getServer().getPluginManager().isPluginEnabled("Citizens")){
+            getLogger().severe("Citizens is missing shopkeeper won't be used!");
+            getServer().getPluginManager().disablePlugin(this);
+            return;
+        }else{
+            npcRegistry = CitizensAPI.getNPCRegistry();
+            citizensEnabled = true;
+            getLogger().info("Hooked with Citizens for shopkeeper");
         }
         fileUtils = new FileUtils();
         configuration = new Configuration();
@@ -72,6 +89,12 @@ public final class BWCosmetics extends JavaPlugin {
     public void registerListeners(){
         getServer().getPluginManager().registerEvents(new PlayerJoinEvent(), this);
         getServer().getPluginManager().registerEvents(new PlayerProjectileLaunchEvent(), this);
+        getServer().getPluginManager().registerEvents(new PlayerLeaveEvent(), this);
+        if(bedwarsEnabled){
+            getLogger().info("Starting to register Bw1058 listeners...");
+            getServer().getPluginManager().registerEvents(new GameStateChangeEvent(),this);
+            getServer().getPluginManager().registerEvents(new GameEndEvent(), this);
+        }
     }
 
     public static BWCosmetics getPlugin() {
@@ -112,5 +135,17 @@ public final class BWCosmetics extends JavaPlugin {
 
     public static RandomUtility getRandomUtility() {
         return randomUtility;
+    }
+
+    public boolean isBedwarsEnabled() {
+        return bedwarsEnabled;
+    }
+
+    public boolean isCitizensEnabled() {
+        return citizensEnabled;
+    }
+
+    public NPCRegistry getNpcRegistry() {
+        return npcRegistry;
     }
 }

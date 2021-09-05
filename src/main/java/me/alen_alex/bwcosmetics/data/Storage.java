@@ -149,7 +149,7 @@ public class Storage {
             @Override
             public void run() {
                 try {
-                    PreparedStatement ps = SQL.getConnection().prepareStatement("UPDATE `cosmetics` SET `bowtrial` = '"+cosmeticData.getPlayerBowTrail().getName()+"' , `shopkeeper` = ;");
+                    PreparedStatement ps = SQL.getConnection().prepareStatement("UPDATE `cosmetics` SET `bowtrial` = '"+cosmeticData.getPlayerBowTrail().getName()+"' , `shopkeeper` = '"+cosmeticData.getPlayerShopkeeper().getName()+"';");
                     ps.executeUpdate();
                     ps.close();
                 } catch (SQLException e) {
@@ -160,7 +160,6 @@ public class Storage {
                 }
             }
         });
-
     }
 
 

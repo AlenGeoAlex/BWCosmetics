@@ -6,3 +6,5 @@ authors:
   - Inferno
 depend:
   - BedWars1058
+softdepend:
+  - Citizens

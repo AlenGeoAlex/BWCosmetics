@@ -1,9 +1,11 @@
 package me.alen_alex.bwcosmetics.cosmetics.shopkeeper;
 
-import es.eltrueno.npc.skin.TruenoNPCSkin;
-import es.eltrueno.npc.skin.TruenoNPCSkinBuilder;
+
 import me.alen_alex.bwcosmetics.BWCosmetics;
 import me.alen_alex.bwcosmetics.utility.SkinType;
+import net.citizensnpcs.api.CitizensAPI;
+import net.citizensnpcs.api.npc.NPC;
+import net.citizensnpcs.trait.SkinTrait;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -13,23 +15,23 @@ public class ShopkeeperSkins {
 
     private String name;
     private SkinType skinType;
-    private int skinID;
+    private String skinTexture;
+    private String skinSignature;
     private String entityName;
     private Material menuItem;
     private EntityType entityType;
-    private TruenoNPCSkin npcSkin;
 
-    public ShopkeeperSkins(@NotNull String name,@NotNull SkinType skinType,@NotNull int skinID,@NotNull String menuItem) {
+    public ShopkeeperSkins(@NotNull String name,@NotNull SkinType skinType,@NotNull String skinTexture,@NotNull String skinSignature,@NotNull String menuItem) {
         this.name = name;
         this.skinType = skinType;
-        this.skinID = skinID;
+        this.skinTexture = skinTexture;
+        this.skinSignature = skinSignature;
         if(Material.matchMaterial(menuItem) != null)
             this.menuItem = Material.getMaterial(menuItem);
         else {
             this.menuItem = Material.WOOL;
             BWCosmetics.getPlugin().getLogger().warning("Unable to match material "+menuItem+" for Skin "+name);
         }
-        this.npcSkin = TruenoNPCSkinBuilder.fromMineskin(BWCosmetics.getPlugin(),skinID);
     }
 
     public ShopkeeperSkins(@NotNull String name,@NotNull SkinType skinType,@NotNull String entityType,@NotNull String menuItem) {
@@ -58,8 +60,12 @@ public class ShopkeeperSkins {
         return skinType;
     }
 
-    public int getSkinID() {
-        return skinID;
+    public String getSkinTexture() {
+        return skinTexture;
+    }
+
+    public String getSkinSignature() {
+        return skinSignature;
     }
 
     public Material getMenuItem() {
@@ -82,7 +88,4 @@ public class ShopkeeperSkins {
         return player.hasPermission("bwc.shopkeeper."+name);
     }
 
-    public TruenoNPCSkin getNpcSkin() {
-        return npcSkin;
-    }
 }
