@@ -1,7 +1,7 @@
 package me.alen_alex.bwcosmetics.cosmetics.victorydance.types;
 
 import me.alen_alex.bwcosmetics.cosmetics.victorydance.VictoryDance;
-import me.alen_alex.bwcosmetics.utility.VictoryDanceType;
+import me.alen_alex.bwcosmetics.cosmetics.victorydance.VictoryDanceType;
 import org.bukkit.Location;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;

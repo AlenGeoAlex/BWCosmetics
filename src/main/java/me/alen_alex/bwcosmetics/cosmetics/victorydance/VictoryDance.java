@@ -1,6 +1,5 @@
 package me.alen_alex.bwcosmetics.cosmetics.victorydance;
 
-import me.alen_alex.bwcosmetics.utility.VictoryDanceType;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
