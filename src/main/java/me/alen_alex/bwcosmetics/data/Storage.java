@@ -149,6 +149,7 @@ public class Storage {
             @Override
             public void run() {
                 try {
+
                     PreparedStatement ps = SQL.getConnection().prepareStatement("UPDATE `cosmetics` SET `bowtrial` = '"+cosmeticData.getPlayerBowTrail().getName()+"' , `shopkeeper` = '"+cosmeticData.getPlayerShopkeeper().getName()+"';");
                     ps.executeUpdate();
                     ps.close();
@@ -160,6 +161,16 @@ public class Storage {
                 }
             }
         });
+    }
+
+    public void disconnect(){
+        if(isConnectionOnline()) {
+            try {
+                this.sqlDatabase.disconnect();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 

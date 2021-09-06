@@ -2,6 +2,7 @@ package me.alen_alex.bwcosmetics.task;
 
 import me.Abhigya.core.util.tasks.Workload;
 import me.alen_alex.bwcosmetics.BWCosmetics;
+import me.alen_alex.bwcosmetics.utility.Debug;
 import me.alen_alex.bwcosmetics.utility.WorkloadScheduler;
 import org.bukkit.Location;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -74,6 +75,7 @@ public class Cooldowns extends BukkitRunnable {
                 Map.Entry<UUID, Long> cooldownData = bowtrail.next();
                 if (System.currentTimeMillis() >= cooldownData.getValue()) {
                     bowtrail.remove();
+                    Debug.setDebugMessage(Debug.DebugType.NORMAL,this.getClass().getSimpleName(),"Removed "+cooldownData.getKey()+" from bowtrail's cooldown!");
                 }
             }
         }
