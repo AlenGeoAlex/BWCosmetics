@@ -1,6 +1,7 @@
 package me.alen_alex.bwcosmetics.utility;
 
 import me.alen_alex.bwcosmetics.BWCosmetics;
+import me.alen_alex.bwcosmetics.cosmetics.victorydance.types.WitherRide;
 import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitTask;
 

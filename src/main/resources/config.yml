@@ -42,3 +42,5 @@ cosmetics:
       enabled: true
       cooldownInSecs: 600
     randomize-player-selection-each-time: true
+  victorydance:
+    enabled: true

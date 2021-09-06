@@ -52,7 +52,7 @@ public class WitherRide extends VictoryDance implements Listener {
                     cancel();
                     destroy();
                 }
-                if((!(getPlayer().getWorld() == getPlayerCurrentWorld())) || wither.getPassenger() != getPlayer() || (getPlayer().getVehicle() != wither) || getPlayer().isOnline()){
+                if((getPlayer().getWorld() != getPlayerCurrentWorld()) || wither.getPassenger() != getPlayer() || (getPlayer().getVehicle() != wither) || !getPlayer().isOnline()){
                     cancel();
                     destroy();
                 }

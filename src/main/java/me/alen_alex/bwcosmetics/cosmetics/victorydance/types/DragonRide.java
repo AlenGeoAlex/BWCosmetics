@@ -32,7 +32,14 @@ public class DragonRide extends VictoryDance implements Listener {
 
     private void destroy(){
         HandlerList.unregisterAll(this);
-        enderDragon.remove();
+        if(enderDragon != null) {
+            if (!enderDragon.isDead() && enderDragon.isValid())
+                enderDragon.remove();
+        }
+        if(armorStand != null) {
+            if(armorStand.isValid())
+                armorStand.remove();
+        }
         try {
             this.finalize();
         } catch (Throwable e) {
@@ -42,6 +49,11 @@ public class DragonRide extends VictoryDance implements Listener {
 
     public void startRide(){
         //TODO CHECK PERMISSIONS
+        if(!hasUsePermission())
+            return;
+
+        //TODO CHECK FOR WORLDS
+
         enderDragon = (EnderDragon) getPlayerCurrentWorld().spawnEntity(getLocation(), EntityType.ENDER_DRAGON);
         armorStand = (ArmorStand) getPlayerCurrentWorld().spawnEntity(getLocation(),EntityType.ARMOR_STAND);
         armorStand.setVisible(false);
@@ -52,7 +64,19 @@ public class DragonRide extends VictoryDance implements Listener {
         (new BukkitRunnable(){
             @Override
             public void run() {
-                //TODO CHECK FOR WORLDS
+
+                if(getPlayer() == null){
+                    cancel();
+                    destroy();
+                }
+                if((!(getPlayer().getWorld() == getPlayerCurrentWorld())) || enderDragon.getPassenger() != getPlayer() || (getPlayer().getVehicle() != enderDragon) || !getPlayer().isOnline()){
+                    cancel();
+                    destroy();
+                }
+
+                //TODO HANDLE WORLD DAMAGES
+
+                armorStand.teleport(getPlayer().getEyeLocation().add(getPlayer().getEyeLocation().clone().getDirection().normalize().multiply(20)));
 
             }
         }).runTaskTimer(getPlugin(),1L,20L);

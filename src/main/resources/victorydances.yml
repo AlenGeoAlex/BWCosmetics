@@ -1,4 +1,13 @@
-witherrider:
+Witherride:
   enabled: true
-  withername: "%player% wither"
-  message: "Use the mouse to control it and click to shoot"
+  disabled-worlds:
+    - "lobby"
+  wither-name: "{player} &6Wither"
+  messages:
+    start-message: "&6The perks of being a winner!"
+    stop-message: "&bThe ride has been ended!"
+    riding-tips:
+      - ""
+      - ""
+  cooldownInMins: 30
+

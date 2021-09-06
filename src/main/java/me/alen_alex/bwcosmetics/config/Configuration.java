@@ -10,11 +10,12 @@ public class Configuration {
     private String sqlHost,sqlUsername,sqlPassword,sqlPort,sqlDatabase,prefixMain;
     private boolean usingMysql,sslEnabled;
     private boolean bowtrialEnabled,bowTrailEggEnabled,bowTrailFishhookEnabled,bowTrailArrowEnabled,bowTrailFireballEnabled,bowTrailSnowballEnabled;
-    private boolean shopkeeperEnabled,shopkeeperCooldownEnabled,shopkeeperRandom;
+    private boolean shopkeeperEnabled,shopkeeperCooldownEnabled,shopkeeperRandom,victoryDanceEnabled;
     private int shopKeeperCooldown;
 
     private BowTrialConfig bowTrialConfig;
     private ShopKeeperConfig shopKeeperConfig;
+    private VictoryDanceConfig victoryDanceConfig;
 
     public boolean createConfiguration(BWCosmetics plugin){
         config = BWCosmetics.getPlugin().getFileUtils().createConfiguration(plugin);
@@ -36,6 +37,12 @@ public class Configuration {
             shopKeeperConfig = new ShopKeeperConfig();
             shopKeeperConfig.generateConfig();
         }
+
+        if(isVictoryDanceEnabled()){
+            victoryDanceConfig = new VictoryDanceConfig();
+            victoryDanceConfig.generateConfig();
+            victoryDanceConfig.loadVictoryDanceConfigurations();
+        }
     }
 
     private void loadConfiguration(){
@@ -56,6 +63,7 @@ public class Configuration {
         shopkeeperCooldownEnabled = config.getBoolean("cosmetics.shopkeeper.cooldown.enabled");
         shopKeeperCooldown = config.getInt("cosmetics.shopkeeper.cooldown.cooldownInSecs");
         shopkeeperRandom = config.getBoolean("cosmetics.shopkeeper.randomize-player-selection-each-time");
+        victoryDanceEnabled = config.getBoolean("cosmetics.victorydance.enabled");
     }
 
     public Config getConfig() {
@@ -140,5 +148,13 @@ public class Configuration {
 
     public boolean isShopkeeperRandom() {
         return shopkeeperRandom;
+    }
+
+    public boolean isVictoryDanceEnabled() {
+        return victoryDanceEnabled;
+    }
+
+    public VictoryDanceConfig getVictoryDanceConfig() {
+        return victoryDanceConfig;
     }
 }
