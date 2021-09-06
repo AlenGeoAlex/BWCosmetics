@@ -27,7 +27,7 @@ public class VictoryDance {
         this.victoryDanceType = victoryDanceType;
         this.playerCurrentWorld = player.getWorld();
     }
-    public void startdance(){}
+    public void startdance(){ }
 
     public Player getPlayer() {
         return player;
