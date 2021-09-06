@@ -77,6 +77,34 @@ public class FileUtils {
 
     }
 
+    public Json createJSONFile(BWCosmetics plugin,InputStream is,String fileName,String folderName){
+        if(!generateFolder(plugin,folderName))
+            plugin.getLogger().info("The folder"+folderName+" already exist..Continuing creation of the file "+fileName);
+        return new Json(fileName,plugin.getDataFolder()+File.separator+folderName,is);
+
+    }
+
+    public boolean deleteFile(BWCosmetics plugin,String fileName){
+        File file = new File(plugin.getDataFolder(),fileName);
+        if(file.exists()){
+            file.delete();
+            return true;
+        }else{
+            plugin.getLogger().warning("A file with the name "+fileName+" does not exist");
+            return false;
+        }
+    }
+
+    public boolean deleteFile(BWCosmetics plugin,String fileName,String folderName){
+        File file = new File(plugin.getDataFolder()+File.separator+folderName,fileName);
+        if(file.exists()){
+            file.delete();
+            return true;
+        }else{
+            plugin.getLogger().warning("A file with the name "+fileName+" does not exist on folder "+folderName);
+            return false;
+        }
+    }
 
 
 }

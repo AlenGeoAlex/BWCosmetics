@@ -11,6 +11,7 @@ import me.alen_alex.bwcosmetics.listener.PlayerLeaveEvent;
 import me.alen_alex.bwcosmetics.listener.PlayerProjectileLaunchEvent;
 import me.alen_alex.bwcosmetics.listener.bw1058.GameEndEvent;
 import me.alen_alex.bwcosmetics.listener.bw1058.GameStateChangeEvent;
+import me.alen_alex.bwcosmetics.listener.citizen.CitizensEnableEvent;
 import me.alen_alex.bwcosmetics.playerdata.PlayerCosmeticsManager;
 import me.alen_alex.bwcosmetics.task.Cooldowns;
 import me.alen_alex.bwcosmetics.utility.FileUtils;
@@ -93,7 +94,7 @@ public final class BWCosmetics extends JavaPlugin {
 
     @Override
     public void onDisable() {
-
+        storage.disconnect();
     }
 
     public void registerListeners(){
@@ -105,6 +106,8 @@ public final class BWCosmetics extends JavaPlugin {
             getServer().getPluginManager().registerEvents(new GameStateChangeEvent(),this);
             getServer().getPluginManager().registerEvents(new GameEndEvent(), this);
         }
+        if(citizensEnabled)
+            getServer().getPluginManager().registerEvents(new CitizensEnableEvent(), this);
     }
 
     public static BWCosmetics getPlugin() {
@@ -159,7 +162,7 @@ public final class BWCosmetics extends JavaPlugin {
         return npcRegistry;
     }
 
-    public static CacheManager getCacheManager() {
+    public CacheManager getCacheManager() {
         return cacheManager;
     }
 }
