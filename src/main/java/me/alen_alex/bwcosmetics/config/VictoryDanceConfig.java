@@ -9,7 +9,7 @@ public class VictoryDanceConfig {
 
     private Yaml victorydanceConfig;
     private boolean witherEnabled;
-    private List<String> disabledWorlds,witherMessageTips;
+    private List<String> witherDisabledWorlds,witherMessageTips;
     private String witherName,witherMessageStart,witherMessageStop;
     private int witherCooldownInMins;
 
@@ -19,7 +19,7 @@ public class VictoryDanceConfig {
 
     public void loadVictoryDanceConfigurations(){
         witherEnabled = victorydanceConfig.getBoolean("Witherride.enabled");
-        disabledWorlds = victorydanceConfig.getStringList("Witherride.disabled-worlds");
+        witherDisabledWorlds = victorydanceConfig.getStringList("Witherride.disabled-worlds");
         witherName = victorydanceConfig.getString("Witherride.wither-name");
         witherCooldownInMins = victorydanceConfig.getInt("Witherride.cooldownInMins");
         witherMessageStart = victorydanceConfig.getString("Witherride.messages.start-message");
@@ -37,7 +37,7 @@ public class VictoryDanceConfig {
     }
 
     public List<String> getDisabledWorlds() {
-        return disabledWorlds;
+        return witherDisabledWorlds;
     }
 
     public List<String> getWitherMessageTips() {

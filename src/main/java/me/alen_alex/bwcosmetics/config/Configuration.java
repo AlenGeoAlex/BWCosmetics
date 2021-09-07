@@ -8,7 +8,7 @@ public class Configuration {
 
     private Config config;
     private String sqlHost,sqlUsername,sqlPassword,sqlPort,sqlDatabase,prefixMain;
-    private boolean usingMysql,sslEnabled;
+    private boolean usingMysql,sslEnabled,cooldownMessagesEnabled;
     private boolean bowtrialEnabled,bowTrailEggEnabled,bowTrailFishhookEnabled,bowTrailArrowEnabled,bowTrailFireballEnabled,bowTrailSnowballEnabled;
     private boolean shopkeeperEnabled,shopkeeperCooldownEnabled,shopkeeperRandom,victoryDanceEnabled;
     private int shopKeeperCooldown;
@@ -64,6 +64,7 @@ public class Configuration {
         shopKeeperCooldown = config.getInt("cosmetics.shopkeeper.cooldown.cooldownInSecs");
         shopkeeperRandom = config.getBoolean("cosmetics.shopkeeper.randomize-player-selection-each-time");
         victoryDanceEnabled = config.getBoolean("cosmetics.victorydance.enabled");
+        cooldownMessagesEnabled = config.getBoolean("settings.showCooldownmessages");
     }
 
     public Config getConfig() {
@@ -152,6 +153,10 @@ public class Configuration {
 
     public boolean isVictoryDanceEnabled() {
         return victoryDanceEnabled;
+    }
+
+    public boolean isCooldownMessagesEnabled() {
+        return cooldownMessagesEnabled;
     }
 
     public VictoryDanceConfig getVictoryDanceConfig() {

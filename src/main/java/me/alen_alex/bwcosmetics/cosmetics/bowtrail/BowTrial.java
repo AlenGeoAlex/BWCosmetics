@@ -21,14 +21,16 @@ public class BowTrial {
     private final int cooldown;
     private final List<ParticleBuilder> particleBuilders = new ArrayList<ParticleBuilder>();
     private final ArrayList<String> description;
+    private List<String> disabledWorlds  = new ArrayList<String>();
 
-    public BowTrial(@NotNull String name,@NotNull List<String> particles,@NotNull int cooldown, List<String> description) {
+    public BowTrial(@NotNull String name,@NotNull List<String> particles,@NotNull int cooldown, List<String> description,List<String> disabledWorlds) {
         this.name = name;
         particles.forEach((particleEffect -> {
             this.particleBuilders.add(new ParticleBuilder(ParticleEffect.valueOf(particleEffect)));
         }));
         this.cooldown = cooldown;
         this.description = new ArrayList<>(description);
+        this.disabledWorlds = disabledWorlds;
     }
 
     public void display(Location location){
@@ -58,6 +60,17 @@ public class BowTrial {
 
     public boolean hasDescription(){
         return !(this.description.isEmpty());
+    }
+
+    public boolean isWorldEnabled(Player player){
+        if(disabledWorlds.isEmpty())
+            return true;
+        else {
+            if(disabledWorlds.contains(player.getWorld()))
+                return false;
+            else
+                return true;
+        }
     }
 
 }

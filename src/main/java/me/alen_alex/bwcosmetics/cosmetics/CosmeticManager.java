@@ -31,7 +31,7 @@ public class CosmeticManager {
                 try {
                     if(cachedBowTrial.containsKey(keySet))
                         BWCosmetics.getPlugin().getLogger().warning("Bowtrail - "+keySet+" already exist! will be overridden!");
-                    cachedBowTrial.put(keySet,new BowTrial(config.getString(keySet+".name"), config.getStringList(keySet+".particle"),config.getInt(keySet+".cooldowninSeconds"),config.getStringList(keySet+".description")));
+                    cachedBowTrial.put(keySet,new BowTrial(config.getString(keySet+".name"), config.getStringList(keySet+".particle"),config.getInt(keySet+".cooldowninSeconds"),config.getStringList(keySet+".description"),config.getStringList(keySet+".disabled-worlds")));
                 }catch (IllegalArgumentException e){
                     BWCosmetics.getPlugin().getLogger().warning("Disabling Bowtrail "+config.getString(keySet+".name")+" as it seems its impossible to fetch/load data");
                     e.printStackTrace();

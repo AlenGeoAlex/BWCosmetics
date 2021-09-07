@@ -27,6 +27,9 @@ server:
   database: "bridgepractice"
   usessl: true
 
+settings:
+  showCooldownmessages: true
+
 cosmetics:
   bow-trial:
     enabled: true

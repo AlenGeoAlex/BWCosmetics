@@ -42,7 +42,13 @@ public class Cooldowns extends BukkitRunnable {
         addToShopKeeperCooldown(uuid,(System.currentTimeMillis()+((long) 1000 * seconds)));
     }
 
+    public HashMap<UUID, Long> getBowTrialCooldown() {
+        return bowTrialCooldown;
+    }
 
+    public HashMap<UUID, Long> getShopkeeperskin() {
+        return shopkeeperskin;
+    }
 
     /*public void runCooldownTask(){
         System.out.println("Triggered Cooldown Task");

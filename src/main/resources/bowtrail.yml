@@ -4,6 +4,8 @@ barrier:
     - "BARRIER"
     - "VILLAGER_HAPPY"
   cooldowninSeconds: 3
+  disabled-worlds:
+    - "lobby"
   description:
     - "&8This trail is a combination of"
     - "&cRed Barrier &8& &aGreen Happy Villager"
@@ -14,6 +16,8 @@ heart:
   particle:
     - "SMOKE_NORMAL"
   cooldowninSeconds: 2
+  disabled-worlds:
+    - "lobby"
   description:
     - "&8Ever seen the smooky window up ahead?"
     - "&8Mixes with the enviornment to"

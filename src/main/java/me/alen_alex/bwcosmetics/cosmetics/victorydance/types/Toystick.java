@@ -25,8 +25,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Toystick extends VictoryDance implements Listener {
-    public Toystick(Plugin plugin, Player player){
-        super(plugin,player,player.getLocation(), VictoryDanceType.TOYSTICK);
+    public Toystick(Plugin plugin, Player player,Location location){
+        super(plugin,player,location, VictoryDanceType.TOYSTICK);
         plugin.getServer().getPluginManager().registerEvents(this,plugin);
     }
     @Override

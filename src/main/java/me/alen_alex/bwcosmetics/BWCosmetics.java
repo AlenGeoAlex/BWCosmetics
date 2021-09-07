@@ -4,6 +4,7 @@ import com.andrei1058.bedwars.api.BedWars;
 
 import me.alen_alex.bwcosmetics.cache.CacheManager;
 import me.alen_alex.bwcosmetics.config.Configuration;
+import me.alen_alex.bwcosmetics.config.Messages;
 import me.alen_alex.bwcosmetics.cosmetics.CosmeticManager;
 import me.alen_alex.bwcosmetics.data.Storage;
 import me.alen_alex.bwcosmetics.listener.PlayerJoinEvent;
@@ -27,6 +28,7 @@ public final class BWCosmetics extends JavaPlugin {
     private static BWCosmetics plugin;
     private static FileUtils fileUtils;
     private static Configuration configuration;
+    private static Messages messages;
     private static Storage storage;
     private static CosmeticManager cosmeticManager;
     private static BedWars bwAPI;
@@ -62,6 +64,13 @@ public final class BWCosmetics extends JavaPlugin {
         configuration = new Configuration();
         if(!configuration.createConfiguration(this)){
             getLogger().severe("Unable to create configuration file.");
+            getLogger().severe("Plugin will be disabled!");
+            getServer().getPluginManager().disablePlugin(this);
+            return;
+        }
+        messages = new Messages();
+        if(!messages.generateMessages()){
+            getLogger().severe("Unable to create messages.yml file.");
             getLogger().severe("Plugin will be disabled!");
             getServer().getPluginManager().disablePlugin(this);
             return;
@@ -164,5 +173,9 @@ public final class BWCosmetics extends JavaPlugin {
 
     public CacheManager getCacheManager() {
         return cacheManager;
+    }
+
+    public static Messages getMessages() {
+        return messages;
     }
 }

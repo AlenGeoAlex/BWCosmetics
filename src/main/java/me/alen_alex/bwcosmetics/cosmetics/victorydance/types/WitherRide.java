@@ -1,7 +1,9 @@
 package me.alen_alex.bwcosmetics.cosmetics.victorydance.types;
 
+import me.alen_alex.bwcosmetics.BWCosmetics;
 import me.alen_alex.bwcosmetics.cosmetics.victorydance.VictoryDance;
 import me.alen_alex.bwcosmetics.cosmetics.victorydance.VictoryDanceType;
+import me.alen_alex.bwcosmetics.utility.MessageUtils;
 import org.bukkit.Location;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
@@ -38,7 +40,10 @@ public class WitherRide extends VictoryDance implements Listener {
     }
 
     public void startRide(){
-        //CHECK FOR WORLDS
+        if(BWCosmetics.getPlugin().getConfiguration().getVictoryDanceConfig().getDisabledWorlds().contains(getPlayer().getWorld().getName())) {
+            MessageUtils.sendMessage(getPlayer(),"",false);
+            return;
+        }
         if(!hasUsePermission()){
             return;
         }
@@ -64,9 +69,10 @@ public class WitherRide extends VictoryDance implements Listener {
 
     @EventHandler
     private void onPlayerInteractEvent(PlayerInteractEvent event){
+        System.out.println("Interacted for "+event.getPlayer());
         if(event.getPlayer().getVehicle() != this.wither)
             return;
-
+        System.out.println("Interacted for object with the name "+wither.getPassenger());
         WitherSkull skull = (WitherSkull)  event.getPlayer().getWorld().spawn(event.getPlayer().getEyeLocation().clone().add(event.getPlayer().getEyeLocation().getDirection().normalize().multiply(2)), WitherSkull.class);
         skull.setShooter((ProjectileSource) getPlayer());
         skull.setVelocity(event.getPlayer().getEyeLocation().clone().getDirection().normalize().multiply(3));

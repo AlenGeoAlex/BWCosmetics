@@ -1,0 +1,8 @@
+messages:
+  error:
+    #If the world has been disabled for victory dance
+    disabled-world-victoryDance: "&8[&c!&8] &eThe world has been disabled for victory dance!"
+    #If the world has been disabled for bowtrail
+    disabled-world-bowTrail: "&8[&c!&8] &eThe world has been disabled for bow trail!"
+    ##If the player is in a cooldown for a specific cosmetics.##NOTE availablePlaceholder --> %remaining% : Time remaining to finish cooldown in secs
+    inCooldown: "&8[&c!&8] &cYou are currently in cooldown for another &e%remaining% secs"
