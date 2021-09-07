@@ -1,12 +1,11 @@
 package me.alen_alex.bwcosmetics.cosmetics;
 
 import com.andrei1058.bedwars.api.arena.IArena;
-import de.leonhard.storage.Json;
 import me.alen_alex.bwcosmetics.BWCosmetics;
 import me.alen_alex.bwcosmetics.cosmetics.shopkeeper.Shopkeeper;
 import me.alen_alex.bwcosmetics.cosmetics.shopkeeper.ShopkeeperSkins;
 import me.alen_alex.bwcosmetics.cosmetics.bowtrail.BowTrial;
-import me.alen_alex.bwcosmetics.utility.SkinType;
+import me.alen_alex.bwcosmetics.cosmetics.shopkeeper.SkinType;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.util.HashMap;

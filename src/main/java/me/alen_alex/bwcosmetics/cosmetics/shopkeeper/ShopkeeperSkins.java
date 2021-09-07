@@ -2,10 +2,6 @@ package me.alen_alex.bwcosmetics.cosmetics.shopkeeper;
 
 
 import me.alen_alex.bwcosmetics.BWCosmetics;
-import me.alen_alex.bwcosmetics.utility.SkinType;
-import net.citizensnpcs.api.CitizensAPI;
-import net.citizensnpcs.api.npc.NPC;
-import net.citizensnpcs.trait.SkinTrait;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;

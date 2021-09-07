@@ -1,4 +1,4 @@
-package me.alen_alex.bwcosmetics.utility;
+package me.alen_alex.bwcosmetics.cosmetics.shopkeeper;
 
 public enum SkinType {
 

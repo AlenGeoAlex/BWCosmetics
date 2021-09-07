@@ -5,18 +5,13 @@ import com.andrei1058.bedwars.api.arena.team.ITeam;
 
 import me.alen_alex.bwcosmetics.BWCosmetics;
 import me.alen_alex.bwcosmetics.utility.Debug;
-import me.alen_alex.bwcosmetics.utility.SkinType;
 import net.citizensnpcs.api.npc.NPC;
-import org.bukkit.Bukkit;
 import net.citizensnpcs.trait.SkinTrait;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
-import java.lang.reflect.Method;
-import java.time.LocalDate;
 import java.util.*;
 
 public class Shopkeeper {
