@@ -3,6 +3,7 @@ package me.alen_alex.bwcosmetics.cosmetics.victorydance.types;
 
 import me.alen_alex.bwcosmetics.cosmetics.victorydance.VictoryDance;
 import me.alen_alex.bwcosmetics.cosmetics.victorydance.VictoryDanceType;
+import me.alen_alex.bwcosmetics.utility.BlockUtils;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -71,7 +72,7 @@ public class Toystick extends VictoryDance implements Listener {
     }
 
     public List<Block> getBlocks(Location location, int radius,boolean hollow){
-        int bX = location.getBlockX();
+        /*int bX = location.getBlockX();
         int bY = location.getBlockY();
         int bZ = location.getBlockZ();
         ArrayList<Block> blocks = new ArrayList<Block>();
@@ -85,6 +86,11 @@ public class Toystick extends VictoryDance implements Listener {
                     blocks.add(l.getBlock());
                 }
             }
+        } */
+        List<Block> blocks = new ArrayList<Block>();
+        List<Location>  locations= BlockUtils.getBlocksInRadius(location,radius);
+        for(Location location1 : locations){
+            blocks.add(location1.getBlock());
         }
         return blocks;
     }
