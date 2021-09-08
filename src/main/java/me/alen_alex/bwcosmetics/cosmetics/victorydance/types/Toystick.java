@@ -30,9 +30,9 @@ public class Toystick extends VictoryDance implements Listener {
         super(plugin,player,location, VictoryDanceType.TOYSTICK);
         plugin.getServer().getPluginManager().registerEvents(this,plugin);
     }
-    @Override
+
     public void startdance(){
-        if(!hasUsePermission()){
+
             getPlayer().getInventory().setItemInHand(givestick(getPlayer()));
             World world = getPlayer().getWorld();
             new BukkitRunnable(){
@@ -44,14 +44,14 @@ public class Toystick extends VictoryDance implements Listener {
                 }
             }.runTaskTimer(getPlugin(),1L,20L);
             return;
-        }
+
     }
 
     @EventHandler
     public void onclick(PlayerInteractEvent e){
         if(e.getPlayer().getItemInHand() != givestick(e.getPlayer()) &&
                 e.getPlayer().getItemInHand().getItemMeta().getDisplayName() != givestick(e.getPlayer()).getItemMeta().getDisplayName() ||
-                e.getAction() == Action.RIGHT_CLICK_BLOCK  || e.getAction() == Action.RIGHT_CLICK_BLOCK){
+                e.getAction() == Action.LEFT_CLICK_BLOCK  || e.getAction() == Action.RIGHT_CLICK_BLOCK){
             Block block = e.getClickedBlock();
             List<Block> blocks = getBlocks(block.getLocation(),6,false);
             for(Block block1 : blocks){
@@ -62,7 +62,6 @@ public class Toystick extends VictoryDance implements Listener {
         }
     }
     public ItemStack givestick(Player player){
-        Material type;
         ItemStack itemStack = new ItemStack(Material.STICK);
         ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.setDisplayName("Right click to use");
