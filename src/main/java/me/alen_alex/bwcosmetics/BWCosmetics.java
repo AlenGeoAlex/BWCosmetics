@@ -1,8 +1,10 @@
 package me.alen_alex.bwcosmetics;
 
+import co.aikar.commands.BukkitCommandManager;
 import com.andrei1058.bedwars.api.BedWars;
 
 import me.alen_alex.bwcosmetics.cache.CacheManager;
+import me.alen_alex.bwcosmetics.commands.BWC;
 import me.alen_alex.bwcosmetics.config.Configuration;
 import me.alen_alex.bwcosmetics.config.Messages;
 import me.alen_alex.bwcosmetics.cosmetics.CosmeticManager;
@@ -38,7 +40,8 @@ public final class BWCosmetics extends JavaPlugin {
     private static RandomUtility randomUtility;
     private static CacheManager cacheManager;
     private boolean bedwarsEnabled = false,citizensEnabled = false;
-    private NPCRegistry npcRegistry;
+    private static NPCRegistry npcRegistry;
+    //private static BukkitCommandManager commandManager;
     @Override
     public void onEnable() {
         plugin = this;
@@ -60,6 +63,13 @@ public final class BWCosmetics extends JavaPlugin {
             citizensEnabled = true;
             getLogger().info("Hooked with Citizens for shopkeeper");
         }
+        /*commandManager = new BukkitCommandManager(this);
+        if(commandManager == null){
+            getLogger().severe("Unable to intialize BukkitCommandManager.");
+            getLogger().severe("Plugin will be disabled!");
+            getServer().getPluginManager().disablePlugin(this);
+            return;
+        }*/
         fileUtils = new FileUtils();
         configuration = new Configuration();
         if(!configuration.createConfiguration(this)){
@@ -94,7 +104,8 @@ public final class BWCosmetics extends JavaPlugin {
         playerManager = new PlayerCosmeticsManager();
         registerListeners();
         cooldownTasks = new Cooldowns();
-        cooldownTasks.runTaskTimerAsynchronously(this,100L,10L);
+        cooldownTasks.runTaskTimerAsynchronously(this,100L,20L);
+        registerCommands();
         getLogger().info("------------------------------------------------");
         getLogger().info("Enabled Plugin");
         getLogger().info("------------------------------------------------");
@@ -106,7 +117,7 @@ public final class BWCosmetics extends JavaPlugin {
         storage.disconnect();
     }
 
-    public void registerListeners(){
+    private void registerListeners(){
         getServer().getPluginManager().registerEvents(new PlayerJoinEvent(), this);
         getServer().getPluginManager().registerEvents(new PlayerProjectileLaunchEvent(), this);
         getServer().getPluginManager().registerEvents(new PlayerLeaveEvent(), this);
@@ -117,6 +128,11 @@ public final class BWCosmetics extends JavaPlugin {
         }
         if(citizensEnabled)
             getServer().getPluginManager().registerEvents(new CitizensEnableEvent(), this);
+    }
+
+    private void registerCommands(){
+        //commandManager.registerCommand(new BWCommand(this));
+        getCommand("bwc").setExecutor(new BWC());
     }
 
     public static BWCosmetics getPlugin() {
@@ -175,7 +191,8 @@ public final class BWCosmetics extends JavaPlugin {
         return cacheManager;
     }
 
-    public static Messages getMessages() {
+    public Messages getMessages() {
         return messages;
     }
+
 }

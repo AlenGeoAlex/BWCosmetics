@@ -18,6 +18,8 @@ public class Cooldowns extends BukkitRunnable {
 
     private HashMap<UUID,Long> shopkeeperskin = new HashMap<UUID,Long>();
 
+    private HashMap<UUID,Long> victoryDance = new HashMap<UUID,Long>();
+
     public boolean bowTrialContains(UUID uuid){
         return bowTrialCooldown.containsKey(uuid);
     }
@@ -48,6 +50,18 @@ public class Cooldowns extends BukkitRunnable {
 
     public HashMap<UUID, Long> getShopkeeperskin() {
         return shopkeeperskin;
+    }
+
+    public HashMap<UUID, Long> getVictoryDance() {
+        return victoryDance;
+    }
+
+    public void addToVictoryDance(UUID uuid,long timestamp){
+        victoryDance.put(uuid,timestamp);
+    }
+
+    public void addToVictoryDance(UUID uuid,int mins){
+        addToVictoryDance(uuid,(System.currentTimeMillis() + 1000 * (60*mins) ));
     }
 
     /*public void runCooldownTask(){
@@ -85,5 +99,28 @@ public class Cooldowns extends BukkitRunnable {
                 }
             }
         }
+
+        if(!shopkeeperskin.isEmpty()){
+            Iterator<Map.Entry<UUID,Long>> shopKeeper = shopkeeperskin.entrySet().iterator();
+            while (!shopKeeper.hasNext()){
+                Map.Entry<UUID,Long> currentSkin = shopKeeper.next();
+                if (System.currentTimeMillis() >= currentSkin.getValue()) {
+                    shopKeeper.remove();
+                    Debug.setDebugMessage(Debug.DebugType.NORMAL,this.getClass().getSimpleName(),"Removed "+currentSkin.getKey()+" from shopkeepers's cooldown!");
+                }
+            }
+        }
+
+        if(!victoryDance.isEmpty()){
+            Iterator<Map.Entry<UUID,Long>> victoryDanceMap = victoryDance.entrySet().iterator();
+            while (!victoryDanceMap.hasNext()){
+                Map.Entry<UUID,Long> currentVictoryDance = victoryDanceMap.next();
+                if (System.currentTimeMillis() >= currentVictoryDance.getValue()) {
+                    victoryDanceMap.remove();
+                    Debug.setDebugMessage(Debug.DebugType.NORMAL,this.getClass().getSimpleName(),"Removed "+currentVictoryDance.getKey()+" from victorydance's cooldown!");
+                }
+            }
+        }
+
     }
 }

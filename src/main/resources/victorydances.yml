@@ -2,12 +2,32 @@ Witherride:
   enabled: true
   disabled-worlds:
     - "lobby"
-  wither-name: "{player} &6Wither"
+  wither-name: "&&l%player%'s &6Wither"
   messages:
     start-message: "&6The perks of being a winner!"
     stop-message: "&bThe ride has been ended!"
     riding-tips:
-      - ""
-      - ""
+      - "&8[&c!&8] &eUse your mouse to control the &b&lWither"
+      - "&8[&c!&8] &dClick to shoot &6fireballs"
   cooldownInMins: 30
+  settings:
+    witherRefreshRateInTicks: 10
+    witherVelocityMuliplier: 1.5
+Dragonride:
+  enabled: true
+  disabled-worlds:
+    - "lobby"
+  dragon-name: "&&l%player%'s &e&lDragon"
+  messages:
+    start-message: "&6The perks of being a winner!"
+    stop-message: "&bThe ride has been ended!"
+    riding-tips:
+      - "&8[&c!&8] &eUse your mouse to control the &b&ldragon"
+      - "&8[&c!&8] &dClick to shoot &6fireballs"
+  cooldownInMins: 30
+  settings:
+    break-blocks-in-world: true
+    DragonRefreshRateInTicks: 10
+
+
 

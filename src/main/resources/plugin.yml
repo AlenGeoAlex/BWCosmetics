@@ -11,5 +11,3 @@ softdepend:
 commands:
   bwc:
     description: Test
-  bwc2:
-    description: Test2

@@ -4,6 +4,7 @@ import me.alen_alex.bwcosmetics.BWCosmetics;
 import me.alen_alex.bwcosmetics.cosmetics.victorydance.VictoryDance;
 import me.alen_alex.bwcosmetics.cosmetics.victorydance.VictoryDanceType;
 import me.alen_alex.bwcosmetics.utility.MessageUtils;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
@@ -32,6 +33,8 @@ public class WitherRide extends VictoryDance implements Listener {
     private void destroy(){
         HandlerList.unregisterAll(this);
         wither.remove();
+        if(this.getPlayer().isOnline())
+            getPlayer().setGameMode(GameMode.SURVIVAL);
         try {
             this.finalize();
         } catch (Throwable e) {
@@ -40,16 +43,19 @@ public class WitherRide extends VictoryDance implements Listener {
     }
 
     public void startRide(){
-        if(BWCosmetics.getPlugin().getConfiguration().getVictoryDanceConfig().getDisabledWorlds().contains(getPlayer().getWorld().getName())) {
-            MessageUtils.sendMessage(getPlayer(),"",false);
+        if(BWCosmetics.getPlugin().getConfiguration().getVictoryDanceConfig().getWitherDisabledWorlds().contains(getPlayer().getWorld().getName())) {
+            MessageUtils.sendMessage(getPlayer(),BWCosmetics.getPlugin().getMessages().getDisabledWorldVictoryDance(),false);
             return;
         }
         if(!hasUsePermission()){
             return;
         }
         this.wither = (Wither) getPlayerCurrentWorld().spawnEntity(getLocation(), EntityType.WITHER);
+        this.wither.setCustomName(BWCosmetics.getPlugin().getConfiguration().getVictoryDanceConfig().getWitherName(getPlayer().getName()));
+        this.wither.setCustomNameVisible(true);
         this.wither.setMaxHealth(20.0D);
         this.wither.setPassenger((Entity) getPlayer());
+        getPlayer().setGameMode(GameMode.CREATIVE);
         (new BukkitRunnable() {
             @Override
             public void run() {
@@ -61,27 +67,29 @@ public class WitherRide extends VictoryDance implements Listener {
                     cancel();
                     destroy();
                 }
-
-                wither.setVelocity(getPlayer().getEyeLocation().clone().getDirection().normalize().multiply(0.5D));
+                wither.setVelocity(getPlayer().getEyeLocation().clone().getDirection().multiply(BWCosmetics.getPlugin().getConfiguration().getVictoryDanceConfig().getWitherVelocityMultiplier()));
             }
-        }).runTaskTimer(getPlugin(),1L,20L);
+        }).runTaskTimer(getPlugin(),1L,BWCosmetics.getPlugin().getConfiguration().getVictoryDanceConfig().getWitherRefreshRate());
     }
 
     @EventHandler
     private void onPlayerInteractEvent(PlayerInteractEvent event){
-        System.out.println("Interacted for "+event.getPlayer());
-        if(event.getPlayer().getVehicle() != this.wither)
-            return;
-        System.out.println("Interacted for object with the name "+wither.getPassenger());
-        WitherSkull skull = (WitherSkull)  event.getPlayer().getWorld().spawn(event.getPlayer().getEyeLocation().clone().add(event.getPlayer().getEyeLocation().getDirection().normalize().multiply(2)), WitherSkull.class);
-        skull.setShooter((ProjectileSource) getPlayer());
-        skull.setVelocity(event.getPlayer().getEyeLocation().clone().getDirection().normalize().multiply(3));
+        if(event.getPlayer().getVehicle() instanceof Wither) {
+            if (event.getPlayer().getVehicle() != this.wither)
+                return;
+            WitherSkull skull = (WitherSkull) event.getPlayer().getWorld().spawn(event.getPlayer().getEyeLocation().clone().add(event.getPlayer().getEyeLocation().getDirection().normalize().multiply(2)), WitherSkull.class);
+            skull.setShooter((ProjectileSource) getPlayer());
+            skull.setVelocity(event.getPlayer().getEyeLocation().clone().getDirection().normalize().multiply(3));
+        }
     }
 
     @EventHandler
     private void onEntityTargetLivingEntityEvent(EntityTargetLivingEntityEvent event){
-        if(event.getEntity() instanceof Wither)
-            event.setCancelled(true);
+        if (event.getEntity() instanceof Wither) {
+            if(event.getEntity() == this.wither) {
+                event.setCancelled(true);
+            }
+        }
     }
 
 }

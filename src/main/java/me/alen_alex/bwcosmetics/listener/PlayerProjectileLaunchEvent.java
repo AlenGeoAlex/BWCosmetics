@@ -27,7 +27,7 @@ public class PlayerProjectileLaunchEvent implements Listener {
         if(BWCosmetics.getPlugin().getBwAPI().getArenaUtil().isPlaying(player) && BWCosmetics.getPlugin().getPlayerManager().getPlayer(player).hasBowTrail()){
             if(BWCosmetics.getPlugin().getCooldownTasks().bowTrialContains(player.getUniqueId())){
                 if(BWCosmetics.getPlugin().getConfiguration().isCooldownMessagesEnabled())
-                    MessageUtils.sendMessage(player, BWCosmetics.getMessages().getInCooldown(BWCosmetics.getPlugin().getCooldownTasks().getBowTrialCooldown().get(player.getUniqueId())),false);
+                    MessageUtils.sendMessage(player, BWCosmetics.getPlugin().getMessages().getInCooldown(BWCosmetics.getPlugin().getCooldownTasks().getBowTrialCooldown().get(player.getUniqueId())),false);
                 return;
             }
             /*

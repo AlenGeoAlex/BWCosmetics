@@ -33,6 +33,9 @@ public class Toystick extends VictoryDance implements Listener {
 
     public void startdance(){
 
+        if(!hasUsePermission())
+            return;
+
             getPlayer().getInventory().setItemInHand(givestick(getPlayer()));
             World world = getPlayer().getWorld();
             new BukkitRunnable(){
@@ -87,7 +90,7 @@ public class Toystick extends VictoryDance implements Listener {
             }
         } */
         List<Block> blocks = new ArrayList<Block>();
-        List<Location>  locations= BlockUtils.getBlocksInRadius(location,radius);
+        List<Location>  locations= BlockUtils.getLocationInRadius(location,radius);
         for(Location location1 : locations){
             blocks.add(location1.getBlock());
         }
