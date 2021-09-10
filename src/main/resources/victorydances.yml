@@ -29,6 +29,20 @@ Dragonride:
     break-blocks-in-world: true
     DragonRefreshRateInTicks: 10
     teleport-to-centre-when-outside-worldborder: true
+Horseride:
+  enabled: true
+  horse-name: "&&l%player%'s &e&lHorse"
+  disabled-worlds:
+    - "lobby"
+  cooldownInMins: 30
+  clear-horse-on-world-unload: false
+Coldsnap:
+  enabled: true
+  disabled-worlds:
+    - "lobby"
+  cooldownInMins: 30
+  sound: NOTE_PLING
+
 
 
 

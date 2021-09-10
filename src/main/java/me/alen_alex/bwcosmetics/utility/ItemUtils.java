@@ -13,7 +13,7 @@ import java.util.*;
 
 public class ItemUtils {
 
-    public ItemStack getCustomTextureHead(String texture, boolean base64) {
+    public static ItemStack getCustomTextureHead(String texture, boolean base64) {
         ItemStack head = XMaterial.PLAYER_HEAD.parseItem();
         SkullMeta meta = (SkullMeta) Objects.requireNonNull(head).getItemMeta();
         GameProfile profile = new GameProfile(UUID.randomUUID(), "");
@@ -31,7 +31,7 @@ public class ItemUtils {
         return head;
     }
 
-    public ItemStack getItem(Material materialType, String displayName, List<String> lore){
+    public static ItemStack getItem(Material materialType, String displayName, List<String> lore){
         ItemStack stack = new ItemStack(materialType);
         ItemMeta stackMeta = stack.getItemMeta();
         stackMeta.setDisplayName(displayName);;
@@ -40,7 +40,7 @@ public class ItemUtils {
         return stack;
     }
 
-    public ItemStack getItem(Material materialType, String displayName){
+    public static ItemStack getItem(Material materialType, String displayName){
         ItemStack stack = new ItemStack(materialType);
         ItemMeta stackMeta = stack.getItemMeta();
         stackMeta.setDisplayName(displayName);;
@@ -48,7 +48,7 @@ public class ItemUtils {
         return stack;
     }
 
-    public ItemStack getItem(Material materialType){
+    public static ItemStack getItem(Material materialType){
         return new ItemStack(materialType);
     }
 

@@ -1,11 +1,14 @@
 package me.alen_alex.bwcosmetics.cosmetics.victorydance;
 
+import me.alen_alex.bwcosmetics.BWCosmetics;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 public class VictoryDance {
+
+    //TODO CHECK COOLDOWN BEFORE INTIALIZING OBJECTS!
 
     private Plugin plugin;
     private Player player;
@@ -59,6 +62,14 @@ public class VictoryDance {
 
     public boolean hasUsePermission(){
         return hasPermission() && this.player.hasPermission("bwc.victorydance."+victoryDanceType.name());
+    }
+
+    public boolean isPlayerInCooldown(){
+        return BWCosmetics.getPlugin().getCooldownTasks().containVictoryDance(getPlayer().getUniqueId());
+    }
+
+    public void addPlayerToCooldown(int mins){
+        BWCosmetics.getPlugin().getCooldownTasks().addToVictoryDance(getPlayer().getUniqueId(),mins);
     }
 
 }

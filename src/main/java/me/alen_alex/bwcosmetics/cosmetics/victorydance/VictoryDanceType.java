@@ -6,6 +6,8 @@ public enum VictoryDanceType {
     WITHERRIDE,
     ANVILRAIN,
     TOYSTICK,
-    ENERGYDRAWER
+    ENERGYDRAWER,
+    HORSERIDE,
+    COLDSNAP
 
 }

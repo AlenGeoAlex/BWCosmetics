@@ -43,13 +43,14 @@ public class WitherRide extends VictoryDance implements Listener {
     }
 
     public void startRide(){
-        if(BWCosmetics.getPlugin().getConfiguration().getVictoryDanceConfig().getWitherDisabledWorlds().contains(getPlayer().getWorld().getName())) {
+        if(BWCosmetics.getPlugin().getConfiguration().getVictoryDanceConfig().getWitherDisabledWorlds().contains(getPlayerCurrentWorld().getName())) {
             MessageUtils.sendMessage(getPlayer(),BWCosmetics.getPlugin().getMessages().getDisabledWorldVictoryDance(),false);
             return;
         }
         if(!hasUsePermission()){
             return;
         }
+        addPlayerToCooldown(BWCosmetics.getPlugin().getConfiguration().getVictoryDanceConfig().getWitherCooldownInMins());
         this.wither = (Wither) getPlayerCurrentWorld().spawnEntity(getLocation(), EntityType.WITHER);
         this.wither.setCustomName(BWCosmetics.getPlugin().getConfiguration().getVictoryDanceConfig().getWitherName(getPlayer().getName()));
         this.wither.setCustomNameVisible(true);
@@ -67,6 +68,7 @@ public class WitherRide extends VictoryDance implements Listener {
                     cancel();
                     destroy();
                 }
+
                 wither.setVelocity(getPlayer().getEyeLocation().clone().getDirection().multiply(BWCosmetics.getPlugin().getConfiguration().getVictoryDanceConfig().getWitherVelocityMultiplier()));
             }
         }).runTaskTimer(getPlugin(),1L,BWCosmetics.getPlugin().getConfiguration().getVictoryDanceConfig().getWitherRefreshRate());

@@ -3,16 +3,18 @@ package me.alen_alex.bwcosmetics.config;
 import de.leonhard.storage.Yaml;
 import me.alen_alex.bwcosmetics.BWCosmetics;
 import me.alen_alex.bwcosmetics.utility.MessageUtils;
+import org.bukkit.Sound;
 
 import java.util.List;
 
 public class VictoryDanceConfig {
 
     private Yaml victorydanceConfig;
-    private boolean witherEnabled,dragonRideEnabled,breakEnviormentEnabled,dragonRideTeleportOutsideWorldBorder;
-    private List<String> witherDisabledWorlds,witherMessageTips,dragonRideDisabled;
-    private String witherName,witherMessageStart,witherMessageStop,dragonName;
-    private int witherCooldownInMins,witherRefreshRate,dragonCooldownInMins,dragonRefreshRate;
+    private boolean witherEnabled,dragonRideEnabled,breakEnviormentEnabled,dragonRideTeleportOutsideWorldBorder,horseRideEnabled,clearHorseOnWorldUnload,coldSnapEnabled;
+    private List<String> witherDisabledWorlds,witherMessageTips,dragonRideDisabled,horseRideDisabledWorlds,coldSnapDisabledWorlds;
+    private String witherName,witherMessageStart,witherMessageStop,dragonName,horseName;
+    private int witherCooldownInMins,witherRefreshRate,dragonCooldownInMins,dragonRefreshRate,horseRideCooldown,coldSnapCooldown;
+    private Sound coldSnapSound;
     private double witherVelocityMultiplier;
 
     public void generateConfig(){
@@ -35,6 +37,21 @@ public class VictoryDanceConfig {
         breakEnviormentEnabled = victorydanceConfig.getBoolean("Dragonride.settings.break-blocks-in-world");
         dragonRefreshRate = victorydanceConfig.getInt("Dragonride.settings.DragonRefreshRateInTicks");
         dragonRideTeleportOutsideWorldBorder = victorydanceConfig.getBoolean("Dragonride.settings.teleport-to-centre-when-outside-worldborder");
+        horseRideEnabled = victorydanceConfig.getBoolean("Horseride.enabled");
+        horseRideDisabledWorlds = victorydanceConfig.getStringList("Horseride.disabled-worlds");
+        clearHorseOnWorldUnload = victorydanceConfig.getBoolean("Horseride.clear-horse-on-world-unload");
+        horseName = victorydanceConfig.getString("Horseride.horse-name");
+        horseRideCooldown = victorydanceConfig.getInt("Horseride.cooldownInMins");
+        coldSnapEnabled = victorydanceConfig.getBoolean("Coldsnap.enabled");
+        coldSnapDisabledWorlds = victorydanceConfig.getStringList("Coldsnap.disabled-worlds");
+        coldSnapCooldown = victorydanceConfig.getInt("Coldsnap.cooldownInMins");
+        if(Sound.valueOf(victorydanceConfig.getString("Coldsnap.sound")) != null)
+            coldSnapSound = Sound.valueOf(victorydanceConfig.getString("Coldsnap.sound"));
+        else {
+            BWCosmetics.getPlugin().getLogger().warning("The sound for coldsnap doesnot exist! Reverting to NOTE_PLING");
+            coldSnapSound = Sound.NOTE_PLING;
+        }
+
         victorydanceConfig = null;
     }
 
@@ -100,5 +117,41 @@ public class VictoryDanceConfig {
 
     public boolean isDragonRideTeleportOutsideWorldBorder() {
         return dragonRideTeleportOutsideWorldBorder;
+    }
+
+    public boolean isHorseRideEnabled() {
+        return horseRideEnabled;
+    }
+
+    public List<String> getHorseRideDisabledWorlds() {
+        return horseRideDisabledWorlds;
+    }
+
+    public boolean isClearHorseOnWorldUnload() {
+        return clearHorseOnWorldUnload;
+    }
+
+    public String getHorseName(String name) {
+        return horseName.replaceAll("%player%",name);
+    }
+
+    public int getHorseRideCooldown() {
+        return horseRideCooldown;
+    }
+
+    public boolean isColdSnapEnabled() {
+        return coldSnapEnabled;
+    }
+
+    public List<String> getColdSnapDisabledWorlds() {
+        return coldSnapDisabledWorlds;
+    }
+
+    public int getColdSnapCooldown() {
+        return coldSnapCooldown;
+    }
+
+    public Sound getColdSnapSound() {
+        return coldSnapSound;
     }
 }

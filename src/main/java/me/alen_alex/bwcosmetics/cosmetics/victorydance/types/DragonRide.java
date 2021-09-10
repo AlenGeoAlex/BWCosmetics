@@ -69,6 +69,7 @@ public class DragonRide extends VictoryDance implements Listener {
         if(!hasUsePermission())
             return;
 
+        addPlayerToCooldown(BWCosmetics.getPlugin().getConfiguration().getVictoryDanceConfig().getDragonCooldownInMins());
         enderDragon = (EnderDragon) getPlayerCurrentWorld().spawnEntity(getLocation(), EntityType.ENDER_DRAGON);
         armorStand = (ArmorStand) getPlayerCurrentWorld().spawnEntity(getLocation(),EntityType.ARMOR_STAND);
         this.enderDragon.setCustomName(BWCosmetics.getPlugin().getConfiguration().getVictoryDanceConfig().getDragonName(getPlayer().getName()));
@@ -79,7 +80,7 @@ public class DragonRide extends VictoryDance implements Listener {
         enderDragon.setMetadata("CUSTOM_DRAGON", new FixedMetadataValue(getPlugin(),""));
         armorStand.setMetadata("FAKE_TARGET",new FixedMetadataValue(getPlugin(), ""));
         getPlayer().setGameMode(GameMode.CREATIVE);
-        (new BukkitRunnable(){
+        (new BukkitRunnable() {
             @Override
             public void run() {
 

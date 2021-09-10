@@ -64,6 +64,10 @@ public class Cooldowns extends BukkitRunnable {
         addToVictoryDance(uuid,(System.currentTimeMillis() + 1000 * (60*mins) ));
     }
 
+    public boolean containVictoryDance(UUID uuid){
+        return victoryDance.containsKey(uuid);
+    }
+
     /*public void runCooldownTask(){
         System.out.println("Triggered Cooldown Task");
         Workload bowTrial = () -> {
