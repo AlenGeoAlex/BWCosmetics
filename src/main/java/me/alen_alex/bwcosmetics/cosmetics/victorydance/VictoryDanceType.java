@@ -5,6 +5,7 @@ public enum VictoryDanceType {
     DRAGONRIDE,
     WITHERRIDE,
     ANVILRAIN,
-    TOYSTICK
+    TOYSTICK,
+    ENERGYDRAWER
 
 }

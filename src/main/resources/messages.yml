@@ -6,3 +6,5 @@ messages:
     disabled-world-bowTrail: "&8[&c!&8] &eThe world has been disabled for bow trail!"
     ##If the player is in a cooldown for a specific cosmetics.##NOTE availablePlaceholder --> %remaining% : Time remaining to finish cooldown in secs
     inCooldown: "&8[&c!&8] &cYou are currently in cooldown for another &e%remaining% secs"
+    ##Teleport dragon ride to middile of the map since the player is outside the world border
+    teleportSinceOutOfBorder: "&8[&c!&8] &cYou have been teleported back to the centre of the world!"

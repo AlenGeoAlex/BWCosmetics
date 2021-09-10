@@ -12,7 +12,7 @@ Witherride:
   cooldownInMins: 30
   settings:
     witherRefreshRateInTicks: 10
-    witherVelocityMuliplier: 1.5
+    witherVelocityMultiplier: 1.5
 Dragonride:
   enabled: true
   disabled-worlds:
@@ -28,6 +28,7 @@ Dragonride:
   settings:
     break-blocks-in-world: true
     DragonRefreshRateInTicks: 10
+    teleport-to-centre-when-outside-worldborder: true
 
 
 

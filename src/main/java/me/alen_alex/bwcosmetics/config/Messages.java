@@ -9,7 +9,7 @@ import me.alen_alex.bwcosmetics.utility.TimeUtils;
 public class Messages {
 
     private Yaml messageConfig;
-    private String disabledWorldVictoryDance,disabledWorldBowTrial;
+    private String disabledWorldVictoryDance,disabledWorldBowTrial,teleportedBackToCentre;
     private String inCooldownPL;
 
     public boolean generateMessages(){
@@ -28,6 +28,7 @@ public class Messages {
         disabledWorldVictoryDance = MessageUtils.parseColor(messageConfig.getString("messages.error.disabled-world-victoryDance"));
         disabledWorldBowTrial = MessageUtils.parseColor(messageConfig.getString("messages.error.disabled-world-bowTrail"));
         inCooldownPL = MessageUtils.parseColor(messageConfig.getString("messages.error.inCooldown"));
+        teleportedBackToCentre = MessageUtils.parseColor(messageConfig.getString("messages.error.teleportSinceOutOfBorder"));
         messageConfig = null;
     }
 
@@ -44,6 +45,11 @@ public class Messages {
     @Getter
     public String getInCooldown(long timeStamp) {
         return inCooldownPL.replaceAll("%remaining%", String.valueOf(TimeUtils.getSecondsFromLongTime(timeStamp)));
+    }
+
+    @Getter
+    public String getTeleportedBackToCentre() {
+        return teleportedBackToCentre;
     }
 
     @Getter

@@ -20,6 +20,8 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.projectiles.ProjectileSource;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.security.MessageDigest;
+
 public class DragonRide extends VictoryDance implements Listener {
 
     private EnderDragon enderDragon;
@@ -97,7 +99,15 @@ public class DragonRide extends VictoryDance implements Listener {
                 }
 
                 armorStand.teleport(getPlayer().getEyeLocation().add(getPlayer().getEyeLocation().clone().getDirection().normalize().multiply(30)));
-
+                if(BWCosmetics.getPlugin().getConfiguration().getVictoryDanceConfig().isDragonRideTeleportOutsideWorldBorder()){
+                    if(getPlayerCurrentWorld().getWorldBorder() != null){
+                        if(BlockUtils.isOutsideBorder(getPlayer())){
+                            armorStand.teleport(getPlayerCurrentWorld().getWorldBorder().getCenter());
+                            enderDragon.teleport(armorStand);
+                            MessageUtils.sendMessage(getPlayer(),BWCosmetics.getPlugin().getMessages().getTeleportedBackToCentre(),false);
+                        }
+                    }
+                }
             }
         }).runTaskTimer(getPlugin(),1L,BWCosmetics.getPlugin().getConfiguration().getVictoryDanceConfig().getDragonRefreshRate());
     }
