@@ -148,8 +148,8 @@ public class Storage {
         Bukkit.getScheduler().runTaskAsynchronously(BWCosmetics.getPlugin(), new Runnable() {
             @Override
             public void run() {
+                String sqlQuery = "";
                 try {
-
                     PreparedStatement ps = SQL.getConnection().prepareStatement("UPDATE `cosmetics` SET `bowtrial` = '"+cosmeticData.getPlayerBowTrail().getName()+"' , `shopkeeper` = '"+cosmeticData.getPlayerShopkeeper().getName()+"';");
                     ps.executeUpdate();
                     ps.close();

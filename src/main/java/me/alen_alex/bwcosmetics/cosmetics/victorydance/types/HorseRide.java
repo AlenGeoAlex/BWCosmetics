@@ -7,9 +7,13 @@ import me.alen_alex.bwcosmetics.utility.ItemUtils;
 import me.alen_alex.bwcosmetics.utility.MessageUtils;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.BlockFace;
 import org.bukkit.entity.*;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -19,6 +23,7 @@ public class HorseRide extends VictoryDance implements Listener {
 
     public HorseRide(Plugin plugin, Player player, Location location) {
         super(plugin, player, location, VictoryDanceType.HORSERIDE);
+        plugin.getServer().getPluginManager().registerEvents(this,plugin);
     }
 
     public Horse getHorse() {
@@ -69,6 +74,20 @@ public class HorseRide extends VictoryDance implements Listener {
         } catch (Throwable e) {
             e.printStackTrace();
         }
+    }
+
+    @EventHandler(priority = EventPriority.LOWEST)
+    public void onPlayerMove(PlayerMoveEvent event){
+        if(event.isCancelled() || event.getPlayer().getVehicle() !=  this.horse)
+            return;
+
+        if (event.getTo().getBlockX() == event.getFrom().getBlockX() && event.getTo().getBlockY() == event.getFrom().getBlockY() && event.getTo().getBlockZ() == event.getFrom().getBlockZ()) {
+            return;
+        }
+
+        if(event.getPlayer().getVehicle().getLocation().getBlock().getRelative(BlockFace.DOWN).getType() == Material.AIR)
+            event.getPlayer().getVehicle().getLocation().getBlock().getRelative(BlockFace.DOWN).setType(Material.COBBLESTONE);
+
     }
 
 
