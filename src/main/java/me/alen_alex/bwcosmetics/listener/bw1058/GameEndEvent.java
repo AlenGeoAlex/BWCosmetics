@@ -2,6 +2,7 @@ package me.alen_alex.bwcosmetics.listener.bw1058;
 
 import com.andrei1058.bedwars.api.arena.IArena;
 import me.alen_alex.bwcosmetics.BWCosmetics;
+import org.apache.commons.lang3.EnumUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
