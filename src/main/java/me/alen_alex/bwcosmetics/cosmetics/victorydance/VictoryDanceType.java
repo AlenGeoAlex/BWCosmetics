@@ -1,5 +1,8 @@
 package me.alen_alex.bwcosmetics.cosmetics.victorydance;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public enum VictoryDanceType {
 
     DRAGONRIDE,
@@ -8,6 +11,6 @@ public enum VictoryDanceType {
     TOYSTICK,
     ENERGYDRAWER,
     HORSERIDE,
-    COLDSNAP
-
+    COLDSNAP;
 }
+

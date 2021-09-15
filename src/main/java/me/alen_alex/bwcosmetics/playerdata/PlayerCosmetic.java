@@ -3,6 +3,7 @@ package me.alen_alex.bwcosmetics.playerdata;
 import me.alen_alex.bwcosmetics.BWCosmetics;
 import me.alen_alex.bwcosmetics.cosmetics.shopkeeper.ShopkeeperSkins;
 import me.alen_alex.bwcosmetics.cosmetics.bowtrail.BowTrial;
+import me.alen_alex.bwcosmetics.cosmetics.victorydance.VictoryDanceType;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -16,12 +17,14 @@ public class PlayerCosmetic {
     private Player player;
     private BowTrial playerBowTrail;
     private ShopkeeperSkins playerShopkeeper;
+    private VictoryDanceType victoryDanceType;
 
     public PlayerCosmetic(UUID playerUUID) {
         this.playerUUID = playerUUID;
         this.player = Bukkit.getPlayer(playerUUID);
         playerBowTrail = null;
         playerShopkeeper = null;
+        victoryDanceType = null;
         loadCosmetics();
     }
 
@@ -46,6 +49,15 @@ public class PlayerCosmetic {
                                 if(BWCosmetics.getPlugin().getCosmeticManager().containsShopkeeperskin(shopkeeper)){
                                     playerShopkeeper = BWCosmetics.getPlugin().getCosmeticManager().getCachedSkins().get(shopkeeper);
                                  }
+                            }
+                        }
+
+                        if(set.getString("victorydance") != null){
+                            String victorydance = set.getString("victorydance");
+                            try {
+                                victoryDanceType = VictoryDanceType.valueOf(victorydance);
+                            }catch (IllegalArgumentException e){
+                                BWCosmetics.getPlugin().getLogger().warning("Unknown victory dance for player "+player.getName());
                             }
                         }
                     }
@@ -98,5 +110,11 @@ public class PlayerCosmetic {
         }
     }
 
+    public VictoryDanceType getVictoryDanceType() {
+        return victoryDanceType;
+    }
 
+    public boolean hasVictoryDance(){
+        return this.victoryDanceType != null;
+    }
 }

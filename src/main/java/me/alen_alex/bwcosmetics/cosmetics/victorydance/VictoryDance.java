@@ -72,4 +72,5 @@ public class VictoryDance {
         BWCosmetics.getPlugin().getCooldownTasks().addToVictoryDance(getPlayer().getUniqueId(),mins);
     }
 
+
 }

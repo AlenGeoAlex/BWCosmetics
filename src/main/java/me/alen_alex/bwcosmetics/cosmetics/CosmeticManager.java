@@ -6,7 +6,13 @@ import me.alen_alex.bwcosmetics.cosmetics.shopkeeper.Shopkeeper;
 import me.alen_alex.bwcosmetics.cosmetics.shopkeeper.ShopkeeperSkins;
 import me.alen_alex.bwcosmetics.cosmetics.bowtrail.BowTrial;
 import me.alen_alex.bwcosmetics.cosmetics.shopkeeper.SkinType;
+import me.alen_alex.bwcosmetics.cosmetics.victorydance.VictoryDanceType;
+import me.alen_alex.bwcosmetics.cosmetics.victorydance.types.DragonRide;
+import me.alen_alex.bwcosmetics.cosmetics.victorydance.types.HorseRide;
+import me.alen_alex.bwcosmetics.cosmetics.victorydance.types.Toystick;
+import me.alen_alex.bwcosmetics.cosmetics.victorydance.types.WitherRide;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 
 import java.util.HashMap;
 
@@ -92,6 +98,26 @@ public class CosmeticManager {
             return currentGames.get(arena);
         else
             return null;
+    }
+
+    public void startPlayerVictorDance(Player player){
+        VictoryDanceType type = BWCosmetics.getPlugin().getPlayerManager().getPlayer(player).getVictoryDanceType();
+        switch (type){
+            case DRAGONRIDE:
+                new DragonRide(BWCosmetics.getPlugin(),player,player.getLocation()).startRide();
+                break;
+            case WITHERRIDE:
+                new WitherRide(BWCosmetics.getPlugin(),player,player.getLocation()).startRide();
+                break;
+            case TOYSTICK:
+                new Toystick(BWCosmetics.getPlugin(),player,player.getLocation()).startdance();
+                break;
+            case HORSERIDE:
+                new HorseRide(BWCosmetics.getPlugin(),player,player.getLocation()).startRide();
+                break;
+            default:
+                BWCosmetics.getPlugin().getLogger().warning("Unknown victory dance type "+type.name());
+        }
     }
 
 }
