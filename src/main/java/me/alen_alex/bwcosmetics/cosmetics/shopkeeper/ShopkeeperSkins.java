@@ -2,6 +2,7 @@ package me.alen_alex.bwcosmetics.cosmetics.shopkeeper;
 
 
 import me.alen_alex.bwcosmetics.BWCosmetics;
+import org.apache.commons.lang3.EnumUtils;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -40,7 +41,7 @@ public class ShopkeeperSkins {
             BWCosmetics.getPlugin().getLogger().warning("Unable to match material "+menuItem+" for Skin "+name);
         }
         this.entityName = entityType;
-        if(EntityType.valueOf(entityName) == null){
+        if(!EnumUtils.isValidEnum(EntityType.class,entityType)){
             this.skinType = SkinType.DEFAULT;
             this.entityType = EntityType.VILLAGER;
             BWCosmetics.getPlugin().getLogger().warning("Unknown entity type for Shopkeeper skin "+name+". Forcing to default");

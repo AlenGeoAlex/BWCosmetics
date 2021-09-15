@@ -1,7 +1,6 @@
 package me.alen_alex.bwcosmetics.cosmetics.victorydance.types;
 
 import com.andrei1058.bedwars.api.arena.IArena;
-import com.comphenix.protocol.wrappers.EnumWrappers;
 import me.Abhigya.core.particle.particlelib.ParticleBuilder;
 import me.Abhigya.core.particle.particlelib.ParticleEffect;
 import me.Abhigya.core.util.tasks.Workload;
@@ -9,7 +8,6 @@ import me.alen_alex.bwcosmetics.BWCosmetics;
 import me.alen_alex.bwcosmetics.cosmetics.victorydance.VictoryDance;
 import me.alen_alex.bwcosmetics.cosmetics.victorydance.VictoryDanceType;
 import me.alen_alex.bwcosmetics.utility.LineUtils;
-import me.alen_alex.bwcosmetics.utility.WorkloadScheduler;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
