@@ -74,21 +74,6 @@ public class Toystick extends VictoryDance implements Listener {
     }
 
     public List<Block> getBlocks(Location location, int radius,boolean hollow){
-        /*int bX = location.getBlockX();
-        int bY = location.getBlockY();
-        int bZ = location.getBlockZ();
-        ArrayList<Block> blocks = new ArrayList<Block>();
-        for (int x = bX - radius; x <= bX + radius; ++x) {
-            for (int y = bY - radius; y <= bY + radius; ++y) {
-                for (int z = bZ - radius; z <= bZ + radius; ++z) {
-                    Location l;
-                    double distance = (bX - x) * (bX - x) + (bY - y) * (bY - y) + (bZ - z) * (bZ - z);
-                    if (!(distance < (double) (radius * radius)) || hollow && !(distance >= (double) ((radius - 1) * (radius - 1))) || (l = new Location(location.getWorld(), x, y, z)).getBlock().getType() == Material.BARRIER)
-                        continue;
-                    blocks.add(l.getBlock());
-                }
-            }
-        } */
         List<Block> blocks = new ArrayList<Block>();
         List<Location>  locations= BlockUtils.getLocationInRadius(location,radius);
         for(Location location1 : locations){

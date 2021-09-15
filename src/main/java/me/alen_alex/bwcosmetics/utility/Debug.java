@@ -11,9 +11,9 @@ public class Debug {
         NORMAL,
         WARN,
         ERROR
-    }
-
+        }
     private static boolean debuggingEnabled = true;
+
 
     public static void setDebugMessage(DebugType debugType,String className,String message){
         BWCosmetics.getPlugin().getServer().getScheduler().runTaskAsynchronously(BWCosmetics.getPlugin(), new Runnable() {
